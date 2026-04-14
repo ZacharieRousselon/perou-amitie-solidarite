@@ -92,11 +92,11 @@ export const HERO_MAP: Record<string, string> = {
 // ── Carousels par page ────────────────────────────────────────────────────────
 export const CAROUSEL_MAP: Record<string, CarouselSlide[]> = {
   'zone-collique': [
-    { img: 'IMG_20221103_121345-1-1024x768.jpg', caption: 'Collique — Activités avec les enfants' },
-    { img: 'IMG_20221104_102402-768x1024.jpg',   caption: 'Casita — Moment de partage' },
-    { img: 'IMG_20221105_165039.jpg',            caption: 'Construction et rénovation' },
-    { img: 'IMG_20221103_173649-1024x768.jpg',   caption: 'Collique — La vie au quotidien' },
-    { img: 'IMG_20221104_115950-1024x768.jpg',   caption: 'Repas au comedor' },
+    { img: 'IMG_20221103_121345-1-1024x768.jpg', caption: 'Vue panoramique de Collique — des milliers de foyers accrochés aux collines de Lima (nov. 2022)' },
+    { img: 'IMG_20221104_102402-768x1024.jpg',   caption: 'Collique — Un réservoir d’eau sur les hauteurs du quartier, symbole des défis d’accès à l’eau' },
+    { img: 'IMG_20221105_165039.jpg',            caption: 'Un jeune de Collique dans sa salle de classe, devant la fresque du projet Niños Cerca de Ti' },
+    { img: 'IMG_20221103_173649-1024x768.jpg',   caption: 'Les jeunes de Collique posant dans leur casita, devant le logo Amitié Solidarité Pérou' },
+    { img: 'IMG_20221104_115950-1024x768.jpg',   caption: 'Fresque murale peinte par les enfants dans une salle de classe de la casita' },
   ],
   'zone-casitas': [
     { img: '20429586_1447639341992507_3194714572492583571_n.jpg', caption: 'Repas quotidien au Comedor' },

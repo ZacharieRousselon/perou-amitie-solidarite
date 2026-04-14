@@ -656,7 +656,7 @@ body {
 .carousel-slide { flex: 0 0 100%; position: relative; aspect-ratio: 16/9; }
 @media (max-width: 600px) { .carousel-slide { aspect-ratio: 4/3; } }
 .carousel-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.carousel-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.25rem 1.5rem; background: linear-gradient(to top, rgba(0,0,0,0.65), transparent); color: white; font-size: 0.875rem; font-weight: 500; pointer-events: none; }
+.carousel-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 1rem 1.5rem; background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.2) 60%, transparent 100%); color: white; font-size: 0.875rem; font-weight: 500; pointer-events: none; text-shadow: 0 1px 3px rgba(0,0,0,0.6); }
 .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.18); border: none; color: white; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(4px); transition: background 0.15s; z-index: 5; font-size: 1.2rem; line-height: 1; }
 .carousel-btn:hover { background: rgba(255,255,255,0.32); }
 .carousel-btn-prev { left: 0.75rem; }
