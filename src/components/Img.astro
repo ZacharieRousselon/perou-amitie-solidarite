@@ -1,0 +1,78 @@
+---
+/**
+ * Composant image optimisé — sert le WebP aux navigateurs compatibles,
+ * avec fallback automatique vers l'original (JPG/PNG/JPEG/GIF).
+ * 
+ * Usage: <Img src="/base/assets/images/photo.jpg" alt="..." width={800} height={600} />
+ */
+interface Props {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  loading?: 'lazy' | 'eager';
+  decoding?: 'async' | 'sync' | 'auto';
+  class?: string;
+  style?: string;
+  /** Forcer le retour à un simple <img> sans <picture> (ex : images CSS) */
+  noWebp?: boolean;
+}
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  loading = 'lazy',
+  decoding = 'async',
+  class: cls,
+  style,
+  noWebp = false,
+} = Astro.props;
+
+/**
+ * Dérive le chemin WebP depuis le chemin source.
+ * /base/assets/images/photo.jpg → /base/assets/images/photo.webp
+ * Fonctionne avec .jpg, .jpeg, .png, .gif
+ */
+function toWebP(src: string): string | null {
+  const match = src.match(/^(.+)\.(jpe?g|png|gif)(\?.*)?$/i);
+  if (!match) return null;
+  const qs = match[3] ?? '';
+  return `${match[1]}.webp${qs}`;
+}
+
+const webpSrc = noWebp ? null : toWebP(src);
+---
+
+{webpSrc ? (
+  <picture>
+    <source srcset={webpSrc} type="image/webp" />
+    <img
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      loading={loading}
+      decoding={decoding}
+      class={cls}
+      style={style}
+    />
+  </picture>
+) : (
+  <img
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    loading={loading}
+    decoding={decoding}
+    class={cls}
+    style={style}
+  />
+)}
+
+<style>
+  /* Assure que le <picture> se comporte comme un conteneur inline-block */
+  picture { display: contents; }
+</style>

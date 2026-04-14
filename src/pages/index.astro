@@ -1,5 +1,6 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
+import Img from '../components/Img.astro';
 import { BASE, HELLOASSO_URL } from '../config';
 ---
 
@@ -54,11 +55,11 @@ import { BASE, HELLOASSO_URL } from '../config';
         <a href={`${BASE}/association`} class="btn-red">Découvrir l'association</a>
       </div>
       <div style="position:relative">
-        <img
+        <Img
           src={`${BASE}/assets/images/imgp2516.jpg`}
           alt="Enfants de Collique soutenus par l'association"
-          width="600" height="450"
-          loading="eager" decoding="async"
+          width={600} height={450}
+          loading="eager"
           style="width:100%;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,0.15)"
         />
         <div style="position:absolute;bottom:-1rem;left:-1rem;background:white;border-radius:12px;padding:1rem 1.25rem;box-shadow:0 8px 24px rgba(0,0,0,0.12)">
@@ -79,21 +80,21 @@ import { BASE, HELLOASSO_URL } from '../config';
     </div>
     <div class="grid-3">
       <a href={`${BASE}/zone-collique`} class="zone-card">
-        <img src={`${BASE}/assets/images/Map_of_Lima_highlighting_Comas-2.png`} alt="Quartier de Collique à Lima" width="400" height="300" loading="lazy" decoding="async" style="object-fit:contain;background:#f5f5f4" />
+        <Img src={`${BASE}/assets/images/Map_of_Lima_highlighting_Comas-2.png`} alt="Quartier de Collique à Lima" width={400} height={300} loading="lazy" style="object-fit:contain;background:#f5f5f4" />
         <div class="zone-card-overlay">
           <h3>Collique · Lima</h3>
           <p>Bidonville au nord de Lima — repas, casitas, santé</p>
         </div>
       </a>
       <a href={`${BASE}/zone-casitas`} class="zone-card">
-        <img src={`${BASE}/assets/images/20429586_1447639341992507_3194714572492583571_n.jpg`} alt="Les Casitas — soutien scolaire" width="400" height="300" loading="lazy" decoding="async" />
+        <Img src={`${BASE}/assets/images/20429586_1447639341992507_3194714572492583571_n.jpg`} alt="Les Casitas — soutien scolaire" width={400} height={300} loading="lazy" />
         <div class="zone-card-overlay">
           <h3>Les Casitas</h3>
           <p>Classes maternelles et soutien scolaire à Collique</p>
         </div>
       </a>
       <a href={`${BASE}/zone-amantani`} class="zone-card">
-        <img src={`${BASE}/assets/images/400px-Localizacion_de_Amantani-2.jpg`} alt="Île d'Amantani sur le lac Titicaca" width="400" height="300" loading="lazy" decoding="async" style="object-fit:contain;background:#e0f2fe" />
+        <Img src={`${BASE}/assets/images/400px-Localizacion_de_Amantani-2.jpg`} alt="Île d'Amantani sur le lac Titicaca" width={400} height={300} loading="lazy" style="object-fit:contain;background:#e0f2fe" />
         <div class="zone-card-overlay">
           <h3>Amantani · Titicaca</h3>
           <p>Île du lac Titicaca — collège Miguel Grau</p>
@@ -117,7 +118,7 @@ import { BASE, HELLOASSO_URL } from '../config';
     <div class="grid-3" style="margin-bottom:2.5rem">
       <!-- Repas -->
       <a href={`${BASE}/parrainage-repas`} class="card">
-        <img src={`${BASE}/assets/images/Repas.png`} alt="Parrainage repas — un repas chaque jour" class="card-img" width="400" height="250" loading="lazy" decoding="async" style="object-fit:contain;background:#FEF3C7;padding:1rem" />
+        <Img src={`${BASE}/assets/images/Repas.png`} alt="Parrainage repas — un repas chaque jour" class="card-img" width={400} height={250} loading="lazy" style="object-fit:contain;background:#FEF3C7;padding:1rem" />
         <div class="card-body">
           <span class="card-tag">Repas quotidien</span>
           <div class="parain-price" style="font-size:2rem;margin-bottom:0.25rem">26€ <span style="font-size:0.9rem">/mois</span></div>
@@ -131,7 +132,7 @@ import { BASE, HELLOASSO_URL } from '../config';
 
       <!-- Études -->
       <a href={`${BASE}/parrainage-etudes`} class="card">
-        <img src={`${BASE}/assets/images/IMG_20221103_114325-1-1024x768.jpg`} alt="Parrainage études" class="card-img" />
+        <Img src={`${BASE}/assets/images/IMG_20221103_114325-1-1024x768.jpg`} alt="Scolarité financée — parrainage études" class="card-img" width={400} height={300} loading="lazy" />
         <div class="card-body">
           <span class="card-tag">Scolarité</span>
           <div class="parain-price" style="font-size:2rem;margin-bottom:0.25rem">35€+ <span style="font-size:0.9rem">/mois</span></div>
@@ -145,7 +146,7 @@ import { BASE, HELLOASSO_URL } from '../config';
 
       <!-- Maîtresse -->
       <a href={`${BASE}/parrainage-maitresse`} class="card">
-        <img src={`${BASE}/assets/images/IMG_20221104_115245-768x1024.jpg`} alt="Parrainage maîtresse" class="card-img" />
+        <Img src={`${BASE}/assets/images/IMG_20221104_115245-768x1024.jpg`} alt="Institutrice soutenue — parrainage maîtresse" class="card-img" width={400} height={533} loading="lazy" />
         <div class="card-body">
           <span class="card-tag">Enseignement</span>
           <div class="parain-price" style="font-size:2rem;margin-bottom:0.25rem">25€ <span style="font-size:0.9rem">/mois</span></div>
@@ -185,27 +186,27 @@ import { BASE, HELLOASSO_URL } from '../config';
     >
       <div class="carousel-track" aria-live="off">
         <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="1 sur 6" aria-hidden="false">
-          <img src={`${BASE}/assets/images/IMG_20221105_191530-FOTO-LISTA-PADRINOS-1024x460.jpg`} alt="Novembre 2022 — La liste des parrains et marraines" width="1024" height="460" loading="eager" decoding="async" />
+          <Img src={`${BASE}/assets/images/IMG_20221105_191530-FOTO-LISTA-PADRINOS-1024x460.jpg`} alt="Novembre 2022 — La liste des parrains et marraines" width={1024} height={460} loading="eager" />
           <div class="carousel-caption" aria-hidden="true">Novembre 2022 — La liste des parrains et marraines</div>
         </div>
         <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="2 sur 6" aria-hidden="true">
-          <img src={`${BASE}/assets/images/IMG_20221103_121345-1-1024x768.jpg`} alt="Mission terrain — Collique, Lima" width="1024" height="768" loading="lazy" decoding="async" />
+          <Img src={`${BASE}/assets/images/IMG_20221103_121345-1-1024x768.jpg`} alt="Mission terrain — Collique, Lima" width={1024} height={768} />
           <div class="carousel-caption" aria-hidden="true">Mission terrain — Collique, Lima</div>
         </div>
         <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="3 sur 6" aria-hidden="true">
-          <img src={`${BASE}/assets/images/IMG_20221104_102402-768x1024.jpg`} alt="Les enfants des casitas" width="768" height="1024" loading="lazy" decoding="async" />
+          <Img src={`${BASE}/assets/images/IMG_20221104_102402-768x1024.jpg`} alt="Les enfants des casitas" width={768} height={1024} />
           <div class="carousel-caption" aria-hidden="true">Les enfants des casitas</div>
         </div>
         <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="4 sur 6" aria-hidden="true">
-          <img src={`${BASE}/assets/images/IMG_20221103_173649-1024x768.jpg`} alt="Activités avec les enfants" width="1024" height="768" loading="lazy" decoding="async" />
+          <Img src={`${BASE}/assets/images/IMG_20221103_173649-1024x768.jpg`} alt="Activités avec les enfants" width={1024} height={768} />
           <div class="carousel-caption" aria-hidden="true">Activités avec les enfants</div>
         </div>
         <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="5 sur 6" aria-hidden="true">
-          <img src={`${BASE}/assets/images/IMG_20221104_115950-1024x768.jpg`} alt="Repas quotidien au Comedor" width="1024" height="768" loading="lazy" decoding="async" />
+          <Img src={`${BASE}/assets/images/IMG_20221104_115950-1024x768.jpg`} alt="Repas quotidien au Comedor" width={1024} height={768} />
           <div class="carousel-caption" aria-hidden="true">Repas quotidien au Comedor</div>
         </div>
         <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="6 sur 6" aria-hidden="true">
-          <img src={`${BASE}/assets/images/IMG-20231223-WA0015-2-770x1024.jpg`} alt="Décembre 2023 — Nouvelles de Collique" width="770" height="1024" loading="lazy" decoding="async" />
+          <Img src={`${BASE}/assets/images/IMG-20231223-WA0015-2-770x1024.jpg`} alt="Décembre 2023 — Nouvelles de Collique" width={770} height={1024} />
           <div class="carousel-caption" aria-hidden="true">Décembre 2023 — Nouvelles de Collique</div>
         </div>
       </div>
@@ -224,13 +225,13 @@ import { BASE, HELLOASSO_URL } from '../config';
     <!-- Mosaique photos -->
     <div class="mosaic" aria-label="Galerie photos du Pérou" role="list">
       <div class="mosaic-large mosaic-item" role="listitem">
-        <img src={`${BASE}/assets/images/reg-cus-ville001-1280x800.jpeg`} alt="Lima — Vue de la capitale du Pérou" width="1280" height="800" loading="lazy" decoding="async" />
+        <Img src={`${BASE}/assets/images/reg-cus-ville001-1280x800.jpeg`} alt="Lima — Vue de la capitale du Pérou" width={1280} height={800} />
       </div>
       <div class="mosaic-item" role="listitem">
-        <img src={`${BASE}/assets/images/received_1757209797774632-1024x768.jpeg`} alt="Équipe bénévole de l'association" width="1024" height="768" loading="lazy" decoding="async" />
+        <Img src={`${BASE}/assets/images/received_1757209797774632-1024x768.jpeg`} alt="Équipe bénévole de l'association" width={1024} height={768} />
       </div>
       <div class="mosaic-item" role="listitem">
-        <img src={`${BASE}/assets/images/imgp2516.jpg`} alt="Enfants de Collique" width="600" height="450" loading="lazy" decoding="async" />
+        <Img src={`${BASE}/assets/images/imgp2516.jpg`} alt="Enfants de Collique" width={600} height={450} />
       </div>
     </div>
   </div>
@@ -265,7 +266,7 @@ import { BASE, HELLOASSO_URL } from '../config';
     </div>
     <div class="grid-3">
       <a href={`${BASE}/dernieres-nouvelles`} class="card">
-        <img src={`${BASE}/assets/images/IMG-20231223-WA0015-2-770x1024.jpg`} alt="Nouvelles" class="card-img" />
+        <Img src={`${BASE}/assets/images/IMG-20231223-WA0015-2-770x1024.jpg`} alt="Dernières nouvelles de Collique — décembre 2023" class="card-img" width={400} height={533} />
         <div class="card-body">
           <span class="card-tag">Terrain</span>
           <h3 class="card-title">Dernières nouvelles de Collique</h3>
@@ -274,8 +275,7 @@ import { BASE, HELLOASSO_URL } from '../config';
         </div>
       </a>
       <a href={`${BASE}/journaux`} class="card">
-        <img src={`${BASE}/assets/images/img_0218-3-1024x1024.jpg`} alt="Journaux" class="card-img"
-          onerror="this.src='/perou-amitie-solidarite/assets/images/Logo-perou-asso-1024x304.png';this.style.objectFit='contain';this.style.padding='2rem';this.style.background='#f5f5f4'" />
+        <Img src={`${BASE}/assets/images/Logo-perou-asso-1024x304.png`} alt="Journaux associatifs Pérou Amitié Solidarité" class="card-img" width={400} height={200} style="object-fit:contain;padding:2rem;background:#f5f5f4" />
         <div class="card-body">
           <span class="card-tag">Publication</span>
           <h3 class="card-title">Nos journaux associatifs</h3>
@@ -284,7 +284,7 @@ import { BASE, HELLOASSO_URL } from '../config';
         </div>
       </a>
       <a href={`${BASE}/benevolat`} class="card">
-        <img src={`${BASE}/assets/images/IMG_20191018_152356-1024x768.jpg`} alt="Bénévolat" class="card-img" />
+        <Img src={`${BASE}/assets/images/IMG_20191018_152356-1024x768.jpg`} alt="Mission bénévole au Pérou" class="card-img" width={400} height={300} />
         <div class="card-body">
           <span class="card-tag">Engagement</span>
           <h3 class="card-title">Partir en mission bénévole</h3>

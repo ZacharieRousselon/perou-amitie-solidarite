@@ -2,6 +2,7 @@
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import MainLayout from '../layouts/MainLayout.astro';
 import ParrainageForm from '../components/ParrainageForm.astro';
+import Img from '../components/Img.astro';
 import {
   CHILDREN_MAP,
   HERO_MAP,
@@ -74,11 +75,11 @@ const ogImage = heroImgUrl ?? `${BASE}/assets/images/Logo-perou-asso-1024x304.pn
           {children.map(child => (
             <a href={`${BASE}/${child.slug}`} class="menu-card">
               {child.img && (
-                <img
+                <Img
                   src={`${BASE}/assets/images/${child.img}`}
                   alt={child.title}
-                  width="400" height="225"
-                  loading="lazy" decoding="async"
+                  width={400} height={225}
+                  loading="lazy"
                   style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:1rem;display:block"
                 />
               )}
@@ -114,13 +115,12 @@ const ogImage = heroImgUrl ?? `${BASE}/assets/images/Logo-perou-asso-1024x304.pn
                   aria-label={`${i + 1} sur ${carouselSlides.length}`}
                   aria-hidden={i !== 0 ? 'true' : 'false'}
                 >
-                  <img
+                  <Img
                     src={`${BASE}/assets/images/${slide.img}`}
                     alt={slide.caption ?? title}
-                    width="1024" height="576"
+                    width={1024} height={576}
                     loading={i === 0 ? 'eager' : 'lazy'}
                     decoding="async"
-                    onerror="this.parentElement.style.display='none'"
                   />
                   {slide.caption && <div class="carousel-caption" aria-hidden="true">{slide.caption}</div>}
                 </div>
