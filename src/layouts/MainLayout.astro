@@ -56,14 +56,8 @@ const currentPath = Astro.url.pathname;
   <div class="nav-container">
 
     <!-- Logo -->
-    <a href="/perou-amitie-solidarite/" class="nav-logo">
-      <img
-        src={`${BASE}/assets/images/logo-perou-asso.webp`}
-        alt="Logo Pérou Amitié Solidarité"
-        width="90"
-        height="49"
-        style="height:42px;width:auto;display:block"
-      />
+    <a href={`${BASE}/`} class="nav-logo">
+      <span style="font-size:1.8rem" aria-hidden="true">🇵🇪</span>
       <div class="nav-logo-text">
         <strong>Pérou Amitié Solidarité</strong>
         <span>Association humanitaire</span>
