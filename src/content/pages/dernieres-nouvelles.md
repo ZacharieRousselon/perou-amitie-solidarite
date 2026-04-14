@@ -3,6 +3,43 @@ title: "Dernières Nouvelles"
 description: "Toute l'actualité récente de l'association Pérou Amitié Solidarité — actions sur le terrain, événements solidaires et nouvelles de Collique et Amantani."
 ---
 
+<div style="background:linear-gradient(135deg,#7F1D1D,#991B1B);color:white;border-radius:16px;padding:0.6rem 1.2rem 0.5rem;margin-bottom:1.75rem;display:inline-block;font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.1em">
+  🔴 Événements en cours — Mai 2026
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;margin-bottom:2.5rem">
+
+  <a href="https://www.helloasso.com/associations/perou-amitie-solidarite/evenements/repas-et-soiree-dj-los-33-a-baurech" target="_blank" rel="noopener noreferrer" style="display:block;background:white;border:2px solid #E7E5E4;border-radius:16px;padding:1.5rem;text-decoration:none;color:inherit;transition:border-color 0.2s,transform 0.2s;cursor:pointer">
+    <div style="font-size:2rem;margin-bottom:0.75rem">🎶</div>
+    <div style="font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;color:#8B1919;margin-bottom:0.4rem">Événement · 30 mai 2026</div>
+    <div style="font-size:1.05rem;font-weight:700;color:#1C1917;margin-bottom:0.5rem">Repas & Soirée DJ « LOS 33 » à Baurech</div>
+    <div style="font-size:0.85rem;color:#57534E;line-height:1.6;margin-bottom:1rem">Soirée Latino-américaine avec le groupe Los 33 — menu complet (Gaspacho, Chili con carne, Crêpe aux fruits exotiques), danses latines et soirée dansante. <strong>20h00 · Salle des fêtes de Baurech</strong></div>
+    <div style="font-size:0.8rem;color:#78716C;margin-bottom:1rem">📍 1400 Route de Malagar, 33880 Baurech · De 12€ à 25€</div>
+    <span style="display:inline-flex;align-items:center;gap:0.4rem;background:#8B1919;color:white;font-weight:700;font-size:0.82rem;padding:0.6rem 1.1rem;border-radius:8px">
+      S'inscrire sur HelloAsso →
+    </span>
+  </a>
+
+  <a href="https://www.helloasso.com/associations/perou-amitie-solidarite/collectes/eau-potable-pour-le-dispensaire-de-l-ile-amantani-perou" target="_blank" rel="noopener noreferrer" style="display:block;background:white;border:2px solid #E7E5E4;border-radius:16px;padding:1.5rem;text-decoration:none;color:inherit;transition:border-color 0.2s,transform 0.2s;cursor:pointer">
+    <div style="font-size:2rem;margin-bottom:0.75rem">💧</div>
+    <div style="font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;color:#1B4332;margin-bottom:0.4rem">Collecte en cours · Fin ~30 mai 2026</div>
+    <div style="font-size:1.05rem;font-weight:700;color:#1C1917;margin-bottom:0.5rem">Eau potable pour le dispensaire d'Amantani</div>
+    <div style="font-size:0.85rem;color:#57534E;line-height:1.6;margin-bottom:0.75rem">Financement d'une pompe et des infrastructures pour acheminer l'eau potable au dispensaire de l'île d'Amantani — seul lieu de santé de l'île. 3ème étape du grand projet eau.</div>
+    <div style="background:#F0FDF4;border-radius:8px;padding:0.6rem 0.8rem;margin-bottom:1rem">
+      <div style="font-size:0.75rem;color:#166534;font-weight:700;margin-bottom:0.3rem">670 € collectés sur 6 000 € · 11 % atteint</div>
+      <div style="height:6px;background:#DCFCE7;border-radius:3px;overflow:hidden">
+        <div style="width:11%;height:100%;background:#16A34A;border-radius:3px"></div>
+      </div>
+    </div>
+    <span style="display:inline-flex;align-items:center;gap:0.4rem;background:#166534;color:white;font-weight:700;font-size:0.82rem;padding:0.6rem 1.1rem;border-radius:8px">
+      💚 Faire un don →
+    </span>
+  </a>
+
+</div>
+
+---
+
 <div class="news-article">
 
 <span class="news-date-badge">📅 Novembre 2024</span>
