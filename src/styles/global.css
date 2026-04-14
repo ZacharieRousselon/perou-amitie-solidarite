@@ -653,7 +653,7 @@ body {
 /* === Carousel === */
 .carousel-wrap { position: relative; overflow: hidden; border-radius: 16px; background: #1C1917; }
 .carousel-track { display: flex; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); will-change: transform; }
-.carousel-slide { flex: 0 0 100%; position: relative; aspect-ratio: 16/9; }
+.carousel-slide { flex: 0 0 100%; position: relative; aspect-ratio: 4/3; overflow: hidden; }
 @media (max-width: 600px) { .carousel-slide { aspect-ratio: 4/3; } }
 .carousel-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .carousel-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 1rem 1.5rem; background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.2) 60%, transparent 100%); color: white; font-size: 0.875rem; font-weight: 500; pointer-events: none; text-shadow: 0 1px 3px rgba(0,0,0,0.6); }

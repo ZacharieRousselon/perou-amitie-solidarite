@@ -92,23 +92,24 @@ export const HERO_MAP: Record<string, string> = {
 // ── Carousels par page ────────────────────────────────────────────────────────
 export const CAROUSEL_MAP: Record<string, CarouselSlide[]> = {
   'zone-collique': [
-    { img: 'IMG_20221103_121345-1-1024x768.jpg', caption: 'Vue panoramique de Collique — des milliers de foyers accrochés aux collines de Lima (nov. 2022)' },
-    { img: 'IMG_20221104_102402-768x1024.jpg',   caption: 'Collique — Un réservoir d’eau sur les hauteurs du quartier, symbole des défis d’accès à l’eau' },
-    { img: 'IMG_20221105_165039.jpg',            caption: 'Un jeune de Collique dans sa salle de classe, devant la fresque du projet Niños Cerca de Ti' },
+    { img: 'IMG_20221103_121345-1-1024x768.jpg', caption: 'Vue panoramique de Collique depuis le quartier Nueva Unión — des milliers de foyers sur les collines de Lima (nov. 2022)' },
+    { img: '75266213_2518945218151148_8877541519288958976_n-1024x646.jpg', caption: "Atelier créatif : enfants des casitas et bénévole autour d'une grande table de peinture" },
     { img: 'IMG_20221103_173649-1024x768.jpg',   caption: 'Les jeunes de Collique posant dans leur casita, devant le logo Amitié Solidarité Pérou' },
-    { img: 'IMG_20221104_115950-1024x768.jpg',   caption: 'Fresque murale peinte par les enfants dans une salle de classe de la casita' },
+    { img: 'IMG_20221104_115950-1024x768.jpg',   caption: 'Fresque murale colorée peinte par les enfants dans une salle de classe de la casita' },
   ],
   'zone-casitas': [
-    { img: '20429586_1447639341992507_3194714572492583571_n.jpg', caption: 'Repas collectif au comedor — des dizaines d\'enfants déjeunent sous la banderole « Niños Apadrinados, Amigos del Mundo »' },
-    { img: 'IMG_20221104_115950-1024x768.jpg', caption: 'Fresque murale colorée peinte par les enfants dans une salle de classe de la casita' },
-    { img: 'IMG_20221102_124644-1-768x1024.jpg', caption: 'La cuisine du comedor — bénévoles en filet préparant les repas pour les enfants (nov. 2022)' },
-    { img: 'IMG_20221105_191530-FOTO-LISTA-PADRINOS-1024x460.jpg', caption: 'Le mur des padrinos 2022 — tous les noms des parrains et marraines affichés dans la casita' },
+    { img: 'image-65-1024x576.png',              caption: 'La Casita Rosada — PRONOEI Casita Rosada UGEL 04, avec le quartier de Collique en arrière-plan' },
+    { img: 'image-70-1024x768.png',              caption: "Activité d'éveil scientifique : les enfants explorent avec des loupes, encadrés par leur maîtresse" },
+    { img: 'image-63-1024x768.png',              caption: 'La maîtresse de la Casita Verde avec une bénévole française — gilets Casita Verde UGEL 04' },
+    { img: '75266213_2518945218151148_8877541519288958976_n-1024x646.jpg', caption: 'Atelier peinture : une bénévole accompagne les enfants dans un exercice créatif' },
   ],
   'zone-amantani': [
-    { img: '400px-Localizacion_de_Amantani-2.jpg', caption: 'Carte du Lac Titicaca — l\'île d\'Amantani (point rouge) à la frontière entre le Pérou et la Bolivie' },
-    { img: 'IMG_4996-1024x768.jpg', caption: 'Deux membres de l\'équipe péruvienne sur les hauteurs de Collique, avec le quartier en contrebas (Lima)' },
-    { img: 'IMG_4999-1024x768.jpg', caption: 'Des enfants avec leurs cahiers scolaires sur le pas de la casita — mission terrain de l\'association' },
-    { img: 'IMG_6219-4-1024x768.jpg', caption: 'Une bénévole entourée d\'enfants lors d\'une remise de sacs à dos neufs offerts par les parrains' },
+    { img: '56749285_2419670564723977_7719081207677321216_o-1-1024x713.jpg', caption: 'Élèves du collège Miguel Grau en costumes folkloriques dansant dans la cour (Amantani, île du Lac Titicaca)' },
+    { img: '20664171_1459660727457035_6086017232525540128_n-1.jpg',          caption: "Une habitante d'Amantani en costume traditionnel brodé à fleurs — l'île du Lac Titicaca" },
+    { img: 'PICT0062-1024x768.jpg',                                           caption: "La délégation française avec les élèves d'Amantani autour du panneau solaire offert en 2011" },
+    { img: '21618055_1661358703896188_3393621093547430011_n-2.jpg',           caption: "Cours au collège Miguel Grau d'Amantani — l'enseignant et les élèves en uniforme" },
+    { img: '71342115_1265420186969173_3120209980091793408_o-1-1024x768.jpg',  caption: 'Installation du dispositif de pompage au bord du Lac Titicaca — projet eau potable 2019' },
+    { img: '70015515_1265420330302492_8395538397883531264_o-1-1024x768.jpg',  caption: 'Les cuves Rotoplas du projet eau potable livrées à Amantani — pour le collège, le dispensaire et les familles' },
   ],
   'association': [
     { img: 'imgp2516.jpg', caption: 'Vue aérienne du quartier de Collique (Lima) — le cœur de l\'action de l\'association depuis 2003' },
@@ -118,10 +119,9 @@ export const CAROUSEL_MAP: Record<string, CarouselSlide[]> = {
     { img: 'reg-cus-ville001-1280x800.jpeg', caption: 'Cusco, Pérou — la Plaza de Armas et sa cathédrale coloniale baroque au pied des Andes' },
   ],
   'dernieres-nouvelles': [
-    { img: 'IMG-20231223-WA0015-2-770x1024.jpg', caption: 'Décembre 2023 — Chargement des colis de dons dans le minibus pour livraison aux enfants de Collique' },
     { img: 'IMG-20221223-WA0016-1024x770.jpg',   caption: 'Décembre 2022 — Préparation des colis-cadeaux alignés sur les tables du comedor avant la fête' },
     { img: 'IMG-20221223-WA0017-1024x770.jpg',   caption: 'Décembre 2022 — Les enfants rassemblés dans la casita pour la remise des cadeaux de Noël' },
-    { img: 'IMG_20221105_155745.jpg',             caption: 'Novembre 2022 — Jeune fille de Collique souriante devant la fresque « Proyecto Niños Cerca de Ti »' },
+    { img: 'IMG_20221103_173649-1024x768.jpg',    caption: 'Novembre 2022 — Les jeunes de Collique réunis dans la casita lors de la visite de la chargée de mission' },
   ],
 };
 
