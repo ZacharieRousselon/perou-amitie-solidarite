@@ -12,7 +12,7 @@ L'association Pérou Amitié Solidarité est animée par une équipe de **béné
 <div class="member-grid">
 
   <div class="member-card">
-    <img src="/perou-amitie-solidarite/assets/images/image-2-287x300.webp" alt="Photo de Ysabel Paire-Ficout, présidente d'honneur et fondatrice" width="287" height="300" loading="lazy" />
+    <img src="/perou-amitie-solidarite/assets/images/image-2-287x300.webp" alt="Photo de Ysabel Paire-Ficout, présidente d'honneur et fondatrice" width="287" height="300" loading="lazy" style="object-position:50% 45%" />
     <div class="member-card-body">
       <div class="member-name">Ysabel PAIRE-FICOUT</div>
       <div class="member-role">Présidente d'honneur — Fondatrice</div>
@@ -38,7 +38,7 @@ L'association Pérou Amitié Solidarité est animée par une équipe de **béné
   </div>
 
   <div class="member-card">
-    <img src="/perou-amitie-solidarite/assets/images/Maite-223x300.webp" alt="Photo de Maïté Comets, secrétaire" width="223" height="300" loading="lazy" />
+    <img src="/perou-amitie-solidarite/assets/images/Maite-223x300.webp" alt="Photo de Maïté Comets, secrétaire" width="223" height="300" loading="lazy" style="object-position:50% 30%" />
     <div class="member-card-body">
       <div class="member-name">Maïté COMETS</div>
       <div class="member-role">Secrétaire</div>
