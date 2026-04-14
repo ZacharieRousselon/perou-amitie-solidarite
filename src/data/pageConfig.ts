@@ -33,11 +33,11 @@ export const CHILDREN_MAP: Record<string, Child[]> = {
     { slug: 'association',     title: "L'Association",    desc: "Notre histoire, nos valeurs, notre mission depuis 2003.",       icon: '🤝', img: 'imgp2516.jpg' },
     { slug: 'equipes',         title: 'Nos Équipes',      desc: 'Les membres actifs en France et au Pérou.',                    icon: '👥', img: 'IMG_7396-1.jpg' },
     { slug: 'partenaires',     title: 'Nos Partenaires',  desc: 'Les organisations qui nous soutiennent.',                      icon: '🤲', img: 'logo-belloc-1.png' },
-    { slug: 'bilan-financier', title: 'Bilan Financier',  desc: 'Transparence sur nos ressources et leur utilisation.',         icon: '📊', img: 'Logo-perou-asso-1024x304.png' },
+    { slug: 'bilan-financier', title: 'Bilan Financier',  desc: 'Transparence sur nos ressources et leur utilisation.',         icon: '📊', img: 'IMG_20191018_152356-1024x768.jpg' },
   ],
   'actualites': [
     { slug: 'dernieres-nouvelles', title: 'Dernières Nouvelles', desc: "Toute l'actualité récente de nos actions sur le terrain.", icon: '📰', img: 'IMG-20231223-WA0015-2-770x1024.jpg' },
-    { slug: 'journaux',            title: 'Journaux',            desc: 'Nos bulletins associatifs à télécharger.',                 icon: '📄', img: 'Logo-perou-asso-1024x304.png' },
+    { slug: 'journaux',            title: 'Journaux',            desc: 'Nos bulletins associatifs à télécharger.',                 icon: '📄', img: 'IMG-20221223-WA0016-1024x770.jpg' },
   ],
   'actions': [
     { slug: 'zone-collique',  title: 'Collique · Lima',     desc: 'Notre zone principale : repas, santé, éducation.',  icon: '🏘️', img: 'Map_of_Lima_highlighting_Comas-2.png' },
@@ -60,7 +60,7 @@ export const HERO_MAP: Record<string, string> = {
   'equipe-france':       'IMG_20221105_170850.jpg',
   'equipe-perou':        'IMG_20221103_200759-768x1024.jpg',
   'partenaires':         'logo-belloc-1.png',
-  'bilan-financier':     'Logo-perou-asso-1024x304.png',
+  'bilan-financier':     'IMG_20221103_121345-1-1024x768.jpg',
   'perou-histoire':      'INCAS.gif',
   'perou-demographie':   'Peru-y-situado-en-LA-2.jpg',
   'perou-geographie':    'machu-pichu-639174_640.jpg',

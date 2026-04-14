@@ -16,4 +16,4 @@ export const HELLOASSO_URL = 'https://www.helloasso.com/associations/perou-amiti
 export const FACEBOOK_URL = 'https://www.facebook.com/perouamitiesolidariteofficiel';
 
 /** Image OG par défaut */
-export const DEFAULT_OG_IMAGE = `${BASE}/assets/images/Logo-perou-asso-1024x304.png`;
+export const DEFAULT_OG_IMAGE = `${BASE}/assets/images/reg-cus-ville001-1280x800.jpeg`;

@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Nos Projets"
 source: "https://www.perouamitiesolidarite.org/nos-projets/"
 scraped_at: "2026-04-14T13:34:11"
@@ -38,7 +38,7 @@ SI VOUS SOUHAITEZ PARTICIPER A CE MAGNIFIQUE PROJET GRÂCE A VOS DONS, RENDEZ VO
 ![Image](/perou-amitie-solidarite/assets/images/image-8.png)
 
 
-![Image](/perou-amitie-solidarite/assets/images/Logo-perou-asso-1024x304.png)
+[![Faire un don sur HelloAsso pour nos projets](/perou-amitie-solidarite/assets/images/helloasso-banner.png)](https://www.helloasso.com/associations/perou-amitie-solidarite/)
 
 
 Voir la page
