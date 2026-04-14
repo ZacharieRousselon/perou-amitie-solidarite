@@ -1,104 +1,107 @@
 # ============================================================
 # create_github_repo.ps1
-# Crée le dépôt GitHub via l'API REST et configure le remote
+# Cree le depot GitHub via l'API REST et configure le remote
 # ============================================================
 
 param(
     [string]$RepoName = "perou-amitie-solidarite",
-    [string]$Description = "Migration statique benevole du site Perou Amitie Solidarite - scraping BeautifulSoup vers architecture Markdown",
+    [string]$Description = "Migration statique benevole du site Perou Amitie Solidarite",
     [bool]$IsPrivate = $false
 )
 
-# ── Récupérer le token GitHub depuis gh ou depuis une variable d'env ──
+# Recuperer le token GitHub
 $token = $env:GITHUB_TOKEN
 if (-not $token) {
-    # Essayer de lire depuis le keyring gh si disponible
-    try {
-        $token = (gh auth token 2>$null)
-    } catch {}
+    Write-Host ""
+    Write-Host "Aucun token GitHub trouve dans GITHUB_TOKEN." -ForegroundColor Yellow
+    Write-Host "Entrez votre GitHub Personal Access Token (scope: repo) :" -ForegroundColor Cyan
+    $token = Read-Host "Token"
 }
 
 if (-not $token) {
-    Write-Host ""
-    Write-Host "⚠️  Aucun token GitHub trouvé." -ForegroundColor Yellow
-    Write-Host "   Deux options :" -ForegroundColor Yellow
-    Write-Host "   1. Définir la variable d'environnement GITHUB_TOKEN" -ForegroundColor Cyan
-    Write-Host "   2. Se connecter avec : gh auth login" -ForegroundColor Cyan
-    Write-Host ""
-    $token = Read-Host "Entrez votre GitHub Personal Access Token"
+    Write-Host "Token vide. Abandon." -ForegroundColor Red
+    exit 1
 }
 
-# ── Récupérer le nom d'utilisateur GitHub ──
-Write-Host "`n🔍 Récupération du profil GitHub..." -ForegroundColor Cyan
+# Headers communs
 $headers = @{
     "Authorization" = "token $token"
     "Accept"        = "application/vnd.github+json"
     "User-Agent"    = "perou-migration-script"
 }
 
+# Recuperer le nom d'utilisateur GitHub
+Write-Host ""
+Write-Host "Verification du profil GitHub..." -ForegroundColor Cyan
 try {
     $user = Invoke-RestMethod -Uri "https://api.github.com/user" -Headers $headers -Method GET
     $username = $user.login
-    Write-Host "   Connecté en tant que : $username" -ForegroundColor Green
+    Write-Host "  Connecte en tant que : $username" -ForegroundColor Green
 } catch {
-    Write-Host "❌ Erreur d'authentification : $($_.Exception.Message)" -ForegroundColor Red
+    Write-Host "Erreur d'authentification : $($_.Exception.Message)" -ForegroundColor Red
     exit 1
 }
 
-# ── Créer le dépôt ──
-Write-Host "`n📁 Création du dépôt '$RepoName'..." -ForegroundColor Cyan
+# Creer le depot
+Write-Host ""
+Write-Host "Creation du depot '$RepoName'..." -ForegroundColor Cyan
 
-$body = @{
+$bodyObj = @{
     name        = $RepoName
     description = $Description
     private     = $IsPrivate
     auto_init   = $false
-} | ConvertTo-Json
+}
+$body = $bodyObj | ConvertTo-Json
+
+$repoUrl  = $null
+$cloneUrl = $null
 
 try {
-    $repo = Invoke-RestMethod -Uri "https://api.github.com/user/repos" `
-        -Headers $headers -Method POST `
-        -Body $body -ContentType "application/json"
-    
-    $repoUrl = $repo.html_url
+    $repo    = Invoke-RestMethod -Uri "https://api.github.com/user/repos" -Headers $headers -Method POST -Body $body -ContentType "application/json"
+    $repoUrl  = $repo.html_url
     $cloneUrl = $repo.clone_url
-    Write-Host "   ✅ Dépôt créé : $repoUrl" -ForegroundColor Green
+    Write-Host "  Depot cree : $repoUrl" -ForegroundColor Green
 } catch {
-    $errBody = $_.ErrorDetails.Message | ConvertFrom-Json -ErrorAction SilentlyContinue
-    if ($errBody.errors[0].message -like "*already exists*") {
-        Write-Host "   ℹ️  Le dépôt existe déjà — récupération de l'URL..." -ForegroundColor Yellow
+    $statusCode = $_.Exception.Response.StatusCode.value__
+    if ($statusCode -eq 422) {
+        Write-Host "  Le depot existe deja - recuperation de l'URL..." -ForegroundColor Yellow
         $existingRepo = Invoke-RestMethod -Uri "https://api.github.com/repos/$username/$RepoName" -Headers $headers
         $repoUrl  = $existingRepo.html_url
         $cloneUrl = $existingRepo.clone_url
+        Write-Host "  URL : $repoUrl" -ForegroundColor Green
     } else {
-        Write-Host "❌ Erreur création dépôt : $($_.Exception.Message)" -ForegroundColor Red
-        Write-Host $_.ErrorDetails.Message
+        Write-Host "Erreur creation depot ($statusCode) : $($_.Exception.Message)" -ForegroundColor Red
         exit 1
     }
 }
 
-# ── Configurer le remote et pousser ──
-Write-Host "`n🔗 Configuration du remote 'origin'..." -ForegroundColor Cyan
+# Configurer le remote et pousser
+Write-Host ""
+Write-Host "Configuration du remote 'origin'..." -ForegroundColor Cyan
 
 $remoteExists = git remote get-url origin 2>$null
 if ($remoteExists) {
-    Write-Host "   Remote 'origin' existant détecté — mise à jour..." -ForegroundColor Yellow
+    Write-Host "  Remote existant detecte - mise a jour..." -ForegroundColor Yellow
     git remote set-url origin $cloneUrl
 } else {
     git remote add origin $cloneUrl
 }
 
-Write-Host "   Remote configuré : $cloneUrl" -ForegroundColor Green
+Write-Host "  Remote : $cloneUrl" -ForegroundColor Green
 
-Write-Host "`n🚀 Push vers GitHub..." -ForegroundColor Cyan
+Write-Host ""
+Write-Host "Push vers GitHub..." -ForegroundColor Cyan
 git branch -M main
 git push -u origin main
 
 if ($LASTEXITCODE -eq 0) {
-    Write-Host "`n✅ CODE POUSSÉ AVEC SUCCÈS !" -ForegroundColor Green
-    Write-Host "   🌐 Dépôt : $repoUrl" -ForegroundColor Cyan
+    Write-Host ""
+    Write-Host "SUCCES ! Code pousse sur GitHub." -ForegroundColor Green
+    Write-Host "  Depot : $repoUrl" -ForegroundColor Cyan
 } else {
-    Write-Host "`n❌ Échec du push. Vérifiez vos credentials Git." -ForegroundColor Red
-    Write-Host "   Conseil : Configurez Git avec votre token :" -ForegroundColor Yellow
-    Write-Host "   git config --global credential.helper manager" -ForegroundColor Cyan
+    Write-Host ""
+    Write-Host "Echec du push. Verifiez vos credentials Git." -ForegroundColor Red
+    Write-Host "Conseil : configurez le credential helper :" -ForegroundColor Yellow
+    Write-Host "  git config --global credential.helper manager" -ForegroundColor Cyan
 }

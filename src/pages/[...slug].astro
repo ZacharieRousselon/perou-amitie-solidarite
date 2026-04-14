@@ -1,0 +1,128 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import MainLayout from '../layouts/MainLayout.astro';
+
+
+// ──────────────────────────────────────────────
+// Carte des sous-pages par slug parent
+// Utilisée pour générer la grille de navigation
+// sur les pages quasi-vides (menus de catégorie)
+// ──────────────────────────────────────────────
+const CHILDREN_MAP: Record<string, { slug: string; title: string; description: string }[]> = {
+  'types-parrainage': [
+    { slug: 'parrainage-repas',     title: 'Parrainage Repas',     description: "26 EUR / mois — Offrez un repas quotidien a un enfant de Collique." },
+    { slug: 'parrainage-etudes',    title: 'Parrainage Etudes',    description: "A partir de 35 EUR — Financez la scolarite d'un jeune Peruvien." },
+    { slug: 'parrainage-maitresse', title: 'Parrainage Maitresse', description: "25 EUR / mois — Soutenez une institutrice de Collique." },
+  ],
+  'agir': [
+    { slug: 'benevolat',    title: 'Benevolat et Stage', description: "Rejoignez l'equipe benevole en France ou au Perou." },
+    { slug: 'temoignages',  title: 'Temoignages',        description: "Recits de benevoles et de parrains engages." },
+  ],
+  'je-minforme': [
+    { slug: 'association',       title: "L'Association",   description: "Qui sommes-nous ? Notre histoire et nos valeurs." },
+    { slug: 'equipes',           title: 'Nos Equipes',     description: 'Les membres actifs en France et au Perou.' },
+    { slug: 'partenaires',       title: 'Nos Partenaires', description: 'Les organisations qui nous soutiennent.' },
+    { slug: 'bilan-financier',   title: 'Bilan Financier', description: 'Transparence sur nos comptes et notre gestion.' },
+  ],
+  'actualites': [
+    { slug: 'dernieres-nouvelles', title: 'Dernieres Nouvelles', description: "Toute l'actualite recente de l'association." },
+    { slug: 'journaux',            title: 'Journaux',            description: 'Nos bulletins associatifs a telecharger.' },
+  ],
+};
+
+
+// Seuil en caractères de contenu brut en-dessous duquel
+// on considère la page comme une page-menu (affichage grille)
+const THIN_CONTENT_THRESHOLD = 200;
+
+export async function getStaticPaths() {
+  const pages = await getCollection('pages');
+  return pages
+    .filter((entry) => entry.id !== 'index') // géré par src/pages/index.astro
+    .map((entry) => ({
+      params: { slug: entry.id },
+      props: { entry },
+    }));
+}
+
+interface Props {
+  entry: CollectionEntry<'pages'>;
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+// Détecter si la page est une page-menu (contenu trop court)
+const rawBody = entry.body ?? '';
+const isThinContent = rawBody.trim().length < THIN_CONTENT_THRESHOLD;
+const children = CHILDREN_MAP[entry.id] ?? [];
+
+const pageTitle = entry.data.title;
+---
+
+<MainLayout title={pageTitle} description={entry.data.description}>
+
+  <article>
+    <!-- Breadcrumb -->
+    <nav class="text-sm text-stone-500 mb-6" aria-label="Fil d'Ariane">
+      <a href="/" class="hover:text-red-700 transition-colors">Accueil</a>
+      <span class="mx-2">›</span>
+      <span class="text-stone-700 font-medium">{pageTitle}</span>
+    </nav>
+
+    <!-- Titre de page -->
+    <h1 class="text-3xl md:text-4xl font-bold text-red-800 mb-8 leading-tight">
+      {pageTitle}
+    </h1>
+
+    {isThinContent && children.length > 0 ? (
+      <!-- ── Page-menu : grille de navigation ── -->
+      <div>
+        <p class="text-stone-600 mb-8 text-lg">
+          Choisissez une rubrique pour en savoir plus :
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          {children.map((child) => (
+            <a
+              href={`/${child.slug}`}
+              class="group block bg-white rounded-xl border border-stone-200 p-6 shadow-sm hover:shadow-md hover:border-red-300 transition-all duration-200"
+            >
+              <h2 class="text-lg font-semibold text-red-800 group-hover:text-red-600 transition-colors mb-2">
+                {child.title}
+              </h2>
+              <p class="text-stone-500 text-sm leading-relaxed">
+                {child.description}
+              </p>
+              <span class="inline-block mt-4 text-xs font-medium text-red-700 group-hover:translate-x-1 transition-transform">
+                Voir la rubrique →
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+    ) : (
+      <!-- ── Page avec contenu : rendu Markdown ── -->
+      <div class="prose prose-stone prose-lg max-w-none
+                  prose-headings:text-red-800
+                  prose-a:text-red-700 prose-a:no-underline hover:prose-a:underline
+                  prose-img:rounded-xl prose-img:shadow-md prose-img:my-6
+                  prose-blockquote:border-red-400 prose-blockquote:text-stone-600">
+        <Content />
+      </div>
+    )}
+
+    <!-- Lien retour source originale -->
+    {entry.data.source && (
+      <div class="mt-12 pt-6 border-t border-stone-200">
+        <p class="text-xs text-stone-400">
+          Source originale :
+          <a href={entry.data.source} target="_blank" rel="noopener noreferrer"
+             class="text-stone-500 hover:text-red-700 underline transition-colors">
+            {entry.data.source}
+          </a>
+        </p>
+      </div>
+    )}
+  </article>
+
+</MainLayout>
