@@ -9,15 +9,23 @@ description: "Toute l'actualité récente de l'association Pérou Amitié Solida
 
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;margin-bottom:2.5rem">
 
-  <a href="https://www.helloasso.com/associations/perou-amitie-solidarite/evenements/repas-et-soiree-dj-los-33-a-baurech" target="_blank" rel="noopener noreferrer" style="display:block;background:white;border:2px solid #E7E5E4;border-radius:16px;padding:1.5rem;text-decoration:none;color:inherit;transition:border-color 0.2s,transform 0.2s;cursor:pointer">
-    <div style="font-size:2rem;margin-bottom:0.75rem">🎶</div>
-    <div style="font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;color:#8B1919;margin-bottom:0.4rem">Événement · 30 mai 2026</div>
-    <div style="font-size:1.05rem;font-weight:700;color:#1C1917;margin-bottom:0.5rem">Repas & Soirée DJ « LOS 33 » à Baurech</div>
-    <div style="font-size:0.85rem;color:#57534E;line-height:1.6;margin-bottom:1rem">Soirée Latino-américaine avec le groupe Los 33 — menu complet (Gaspacho, Chili con carne, Crêpe aux fruits exotiques), danses latines et soirée dansante. <strong>20h00 · Salle des fêtes de Baurech</strong></div>
-    <div style="font-size:0.8rem;color:#78716C;margin-bottom:1rem">📍 1400 Route de Malagar, 33880 Baurech · De 12€ à 25€</div>
-    <span style="display:inline-flex;align-items:center;gap:0.4rem;background:#8B1919;color:white;font-weight:700;font-size:0.82rem;padding:0.6rem 1.1rem;border-radius:8px">
-      S'inscrire sur HelloAsso →
-    </span>
+  <a href="https://www.helloasso.com/associations/perou-amitie-solidarite/evenements/repas-et-soiree-dj-los-33-a-baurech" target="_blank" rel="noopener noreferrer" style="display:block;background:white;border:2px solid #E7E5E4;border-radius:16px;overflow:hidden;text-decoration:none;color:inherit;transition:border-color 0.2s,transform 0.2s;cursor:pointer">
+    <img src="/perou-amitie-solidarite/assets/images/affiche-soiree-los33.webp" alt="Affiche Escale Latine — 30 mai 2026 à Baurech" style="width:100%;display:block;height:auto" loading="lazy" />
+    <div style="padding:1.25rem 1.25rem 1.5rem">
+      <div style="font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;color:#8B1919;margin-bottom:0.4rem">Événement · Samedi 30 mai 2026 · 10h–00h</div>
+      <div style="font-size:1.1rem;font-weight:700;color:#1C1917;margin-bottom:0.6rem">🎶 Escale Latine — Baurech</div>
+      <div style="font-size:0.83rem;color:#57534E;line-height:1.65;margin-bottom:1rem">
+        Marché artisanal · Ateliers bracelets · Piñatas<br />
+        🚐 Food truck <em>Mi bella Colombia</em><br />
+        🥁 Musique &amp; déambulation brésilienne<br />
+        🎷 Apéritif musical avec <strong>Mineto</strong><br />
+        🍽️ Repas &amp; soirée dansante · <strong>DJ Los 33</strong>
+      </div>
+      <div style="font-size:0.78rem;color:#78716C;margin-bottom:1rem">📍 Salle des fêtes de Baurech · Réservation avant le 22 mai · 📞 06 32 62 94 25</div>
+      <span style="display:inline-flex;align-items:center;gap:0.4rem;background:#8B1919;color:white;font-weight:700;font-size:0.82rem;padding:0.65rem 1.2rem;border-radius:8px">
+        Réserver sur HelloAsso →
+      </span>
+    </div>
   </a>
 
   <a href="https://www.helloasso.com/associations/perou-amitie-solidarite/collectes/eau-potable-pour-le-dispensaire-de-l-ile-amantani-perou" target="_blank" rel="noopener noreferrer" style="display:block;background:white;border:2px solid #E7E5E4;border-radius:16px;padding:1.5rem;text-decoration:none;color:inherit;transition:border-color 0.2s,transform 0.2s;cursor:pointer">
