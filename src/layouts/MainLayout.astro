@@ -52,7 +52,7 @@ const currentPath = Astro.url.pathname;
 <a href="#main-content" class="skip-link">Passer au contenu principal</a>
 
 <!-- ══ HEADER ══════════════════════════════════════════════════════ -->
-<header class="site-header">
+<header class="site-header" role="banner">
   <div class="nav-container">
 
     <!-- Logo -->
@@ -155,7 +155,7 @@ const currentPath = Astro.url.pathname;
 </main>
 
 <!-- ══ FOOTER ══════════════════════════════════════════════════════ -->
-<footer class="site-footer">
+<footer class="site-footer" role="contentinfo">
   <div class="footer-inner">
     <div class="footer-grid">
 
@@ -198,7 +198,8 @@ const currentPath = Astro.url.pathname;
       <div style="display:flex;gap:1.25rem;align-items:center;flex-wrap:wrap">
         <a href={`${BASE}/mentions-legales`} style="color:#A8A29E;font-size:0.8rem">Mentions légales</a>
         <a href={`${BASE}/politique-confidentialite`} style="color:#A8A29E;font-size:0.8rem">Politique de confidentialité</a>
-        <a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer" style="color:#A8A29E;font-size:0.82rem"><span aria-hidden="true">📘</span> Facebook</a>
+        <a href={`${BASE}/accessibilite`} style="color:#A8A29E;font-size:0.8rem">Accessibilité</a>
+        <a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer" style="color:#A8A29E;font-size:0.82rem"><span aria-hidden="true">📘</span> Facebook<span class="sr-only"> (nouvelle fenêtre)</span></a>
         <span class="footer-badge"><span aria-hidden="true">🇵🇪</span> Depuis 2003</span>
       </div>
     </div>
