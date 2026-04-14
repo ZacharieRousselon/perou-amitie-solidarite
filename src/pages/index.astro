@@ -1,82 +1,252 @@
 ---
-import { getCollection } from 'astro:content';
 import MainLayout from '../layouts/MainLayout.astro';
 
-const pages = await getCollection('pages');
+const BASE = '/perou-amitie-solidarite';
 ---
 
-<MainLayout title="Accueil" description="Pérou Amitié Solidarité — Association humanitaire franco-péruvienne aidant les enfants défavorisés de Collique et de l'île d'Amantani.">
+<MainLayout
+  title="Accueil"
+  description="Pérou Amitié Solidarité — Association humanitaire franco-péruvienne. Depuis 2003, nous aidons les enfants défavorisés de Collique et d'Amantani."
+>
 
-  <!-- Hero -->
-  <section class="text-center py-12 md:py-16">
-    <p class="text-red-700 font-semibold text-sm uppercase tracking-widest mb-4">Association humanitaire franco-péruvienne</p>
-    <h1 class="text-4xl md:text-5xl font-bold text-stone-900 mb-6 leading-tight">
-      Pérou Amitié Solidarité
-    </h1>
-    <p class="text-xl text-stone-600 max-w-2xl mx-auto mb-10 leading-relaxed">
-      Depuis 2003, nous aidons les enfants défavorisés du bidonville de Collique et de l'île d'Amantani
-      grâce à vos parrainages et vos dons.
+<!-- ══ HERO ══════════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-bg" style={`background-image:url('${BASE}/assets/images/reg-cus-ville001-1280x800.jpeg')`}></div>
+  <div class="hero-content">
+    <span class="hero-tag">Association humanitaire · Depuis 2003</span>
+    <h1>Ensemble pour les enfants du Pérou</h1>
+    <p class="hero-desc">
+      Nous soutenons les enfants défavorisés du bidonville de Collique
+      et de l'île d'Amantani grâce à vos parrainages, vos dons et votre engagement.
     </p>
-    <div class="flex flex-wrap justify-center gap-4">
-      <a href="/parrainage"
-         class="bg-red-700 text-white px-8 py-3 rounded-full font-semibold hover:bg-red-600 transition-colors shadow">
-        Devenir parrain
-      </a>
-      <a href="/don"
-         class="bg-amber-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-amber-400 transition-colors shadow">
-        Faire un don
-      </a>
+    <div class="hero-actions">
+      <a href={`${BASE}/parrainage`} class="btn-primary">Devenir parrain</a>
+      <a href={`${BASE}/don`} class="btn-secondary">Faire un don</a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Chiffres clés -->
-  <section class="grid grid-cols-1 sm:grid-cols-3 gap-6 my-10">
-    {[
-      { value: '130+', label: 'enfants parrainés', color: 'text-red-700' },
-      { value: '2003', label: 'année de création', color: 'text-amber-600' },
-      { value: '2', label: 'zones d\'action au Pérou', color: 'text-emerald-700' },
-    ].map((stat) => (
-      <div class="bg-white rounded-xl border border-stone-200 p-6 text-center shadow-sm">
-        <p class={`text-4xl font-bold ${stat.color} mb-1`}>{stat.value}</p>
-        <p class="text-stone-500 text-sm">{stat.label}</p>
+<!-- ══ STATS ═════════════════════════════════════════════════════ -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div><div class="stat-value">2003</div><div class="stat-label">Année de Création</div></div>
+    <div><div class="stat-value">130+</div><div class="stat-label">Enfants Parrainés</div></div>
+    <div><div class="stat-value">2</div><div class="stat-label">Zones d'Action</div></div>
+    <div><div class="stat-value">20+</div><div class="stat-label">Ans d'Engagement</div></div>
+  </div>
+</div>
+
+<!-- ══ MISSION ═══════════════════════════════════════════════════ -->
+<section class="section bg-white">
+  <div class="section-inner">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:3.5rem; align-items:center">
+      <div>
+        <span class="section-tag">Notre Mission</span>
+        <h2 class="section-title">Donner un avenir à chaque enfant</h2>
+        <p class="section-subtitle" style="margin-bottom:1.25rem">
+          L'association Pérou Amitié Solidarité est une ONG humanitaire fondée en 2003 par Ysabel Paire-Ficout,
+          installée en Gironde. Elle agit pour améliorer les conditions de vie et d'éducation des enfants
+          les plus défavorisés du Pérou.
+        </p>
+        <p style="color:#78716C;font-size:1rem;line-height:1.75;margin-bottom:1.75rem">
+          À Collique, bidonville au nord de Lima, et sur l'île d'Amantani du lac Titicaca,
+          nous finançons des repas quotidiens, la scolarité, des fournitures et des projets d'infrastructure.
+        </p>
+        <a href={`${BASE}/association`} class="btn-red">Découvrir l'association</a>
       </div>
-    ))}
-  </section>
-
-  <!-- Rubriques principales -->
-  <section class="mt-14">
-    <h2 class="text-2xl font-bold text-stone-800 mb-8">Explorer le site</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-      {[
-        { slug: 'association',    title: "L'Association",  desc: "Notre histoire, notre equipe et nos valeurs humanitaires.",      icon: '🤝' },
-        { slug: 'parrainage',     title: 'Parrainage',     desc: "Parrainer un enfant pour financer ses repas ou sa scolarite.",   icon: '❤️' },
-        { slug: 'zone-collique',  title: 'Collique',       desc: "Notre principal terrain d'action au nord de Lima.",              icon: '🏘️' },
-        { slug: 'zone-amantani',  title: 'Amantani',       desc: "Notre action sur l'ile d'Amantani, lac Titicaca.",               icon: '🏔️' },
-        { slug: 'projets',        title: 'Nos Projets',    desc: "Eau potable, alimentation, education — nos projets en cours.",   icon: '🚰' },
-        { slug: 'benevolat',      title: 'Benevolat',      desc: "Rejoignez-nous en France ou partez en mission au Perou.",        icon: '✈️' },
-      ].map((item) => (
-        <a href={`/perou-amitie-solidarite/${item.slug}`}
-           class="group bg-white rounded-xl border border-stone-200 p-6 shadow-sm hover:shadow-md hover:border-red-300 transition-all duration-200">
-          <div class="text-3xl mb-3">{item.icon}</div>
-          <h3 class="font-semibold text-stone-900 group-hover:text-red-700 transition-colors mb-2">{item.title}</h3>
-          <p class="text-stone-500 text-sm leading-relaxed">{item.desc}</p>
-        </a>
-      ))}
+      <div style="position:relative">
+        <img
+          src={`${BASE}/assets/images/imgp2516.jpg`}
+          alt="Enfants de Collique"
+          style="width:100%;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,0.15)"
+        />
+        <div style="position:absolute;bottom:-1rem;left:-1rem;background:white;border-radius:12px;padding:1rem 1.25rem;box-shadow:0 8px 24px rgba(0,0,0,0.12)">
+          <div style="font-size:1.5rem;font-weight:900;color:#8B1919">26€</div>
+          <div style="font-size:0.75rem;color:#78716C;font-weight:500">par mois pour un repas<br>chaque jour</div>
+        </div>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
 
+<!-- ══ ZONES D'ACTION ════════════════════════════════════════════ -->
+<section class="section bg-cream">
+  <div class="section-inner">
+    <div style="margin-bottom:3rem">
+      <span class="section-tag">Nos zones d'intervention</span>
+      <h2 class="section-title">Où nous agissons</h2>
+    </div>
+    <div class="grid-3">
+      <a href={`${BASE}/zone-collique`} class="zone-card">
+        <img src={`${BASE}/assets/images/Map_of_Lima_highlighting_Comas-2.png`} alt="Collique, Lima" style="object-fit:contain;background:#f5f5f4" />
+        <div class="zone-card-overlay">
+          <h3>Collique · Lima</h3>
+          <p>Bidonville au nord de Lima — repas, casitas, santé</p>
+        </div>
+      </a>
+      <a href={`${BASE}/zone-casitas`} class="zone-card">
+        <img src={`${BASE}/assets/images/20429586_1447639341992507_3194714572492583571_n.jpg`} alt="Casitas" />
+        <div class="zone-card-overlay">
+          <h3>Les Casitas</h3>
+          <p>Classes maternelles et soutien scolaire à Collique</p>
+        </div>
+      </a>
+      <a href={`${BASE}/zone-amantani`} class="zone-card">
+        <img src={`${BASE}/assets/images/400px-Localizacion_de_Amantani-2.jpg`} alt="Île d'Amantani" style="object-fit:contain;background:#e0f2fe" />
+        <div class="zone-card-overlay">
+          <h3>Amantani · Titicaca</h3>
+          <p>Île du lac Titicaca — collège Miguel Grau</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
 
-  <!-- CTA Don -->
-  <section class="mt-16 bg-red-800 text-white rounded-2xl p-10 text-center">
-    <h2 class="text-2xl font-bold mb-3">Soutenez notre mission</h2>
-    <p class="text-red-200 mb-6 max-w-xl mx-auto">
-      Vos dons permettent de financer les repas, la scolarité et les projets d'infrastructure au Pérou.
-      Chaque euro compte.
-    </p>
-    <a href="/don"
-       class="inline-block bg-amber-400 text-stone-900 font-bold px-10 py-3 rounded-full hover:bg-amber-300 transition-colors">
-      Faire un don maintenant
-    </a>
-  </section>
+<!-- ══ PARRAINAGE ════════════════════════════════════════════════ -->
+<section class="section bg-white">
+  <div class="section-inner">
+    <div style="text-align:center;margin-bottom:3rem">
+      <span class="section-tag">Agir concrètement</span>
+      <h2 class="section-title">Les types de parrainage</h2>
+      <p class="section-subtitle" style="margin:0 auto">
+        Chaque parrainage a un impact direct et mesurable sur la vie d'un enfant.
+      </p>
+    </div>
+
+    <div class="grid-3" style="margin-bottom:2.5rem">
+      <!-- Repas -->
+      <a href={`${BASE}/parrainage-repas`} class="card">
+        <img src={`${BASE}/assets/images/Repas.png`} alt="Parrainage repas" class="card-img" style="object-fit:contain;background:#FEF3C7;padding:1rem" />
+        <div class="card-body">
+          <span class="card-tag">Repas quotidien</span>
+          <div class="parain-price" style="font-size:2rem;margin-bottom:0.25rem">26€ <span style="font-size:0.9rem">/mois</span></div>
+          <p class="card-desc">
+            Offrez un repas chaud complet du lundi au samedi. Pour certains enfants,
+            ce sera le seul repas de la journée.
+          </p>
+          <div class="card-arrow">En savoir plus <span>→</span></div>
+        </div>
+      </a>
+
+      <!-- Études -->
+      <a href={`${BASE}/parrainage-etudes`} class="card">
+        <img src={`${BASE}/assets/images/IMG_20221103_114325-1-1024x768.jpg`} alt="Parrainage études" class="card-img" />
+        <div class="card-body">
+          <span class="card-tag">Scolarité</span>
+          <div class="parain-price" style="font-size:2rem;margin-bottom:0.25rem">35€+ <span style="font-size:0.9rem">/mois</span></div>
+          <p class="card-desc">
+            Financez la scolarité d'un enfant — accompagnement pédagogique, lycée,
+            études supérieures.
+          </p>
+          <div class="card-arrow">En savoir plus <span>→</span></div>
+        </div>
+      </a>
+
+      <!-- Maîtresse -->
+      <a href={`${BASE}/parrainage-maitresse`} class="card">
+        <img src={`${BASE}/assets/images/IMG_20221104_115245-768x1024.jpg`} alt="Parrainage maîtresse" class="card-img" />
+        <div class="card-body">
+          <span class="card-tag">Enseignement</span>
+          <div class="parain-price" style="font-size:2rem;margin-bottom:0.25rem">25€ <span style="font-size:0.9rem">/mois</span></div>
+          <p class="card-desc">
+            Soutenez une institutrice des casitas — garantissez un encadrement
+            pédagogique de qualité.
+          </p>
+          <div class="card-arrow">En savoir plus <span>→</span></div>
+        </div>
+      </a>
+    </div>
+
+    <div style="text-align:center">
+      <a href={`${BASE}/devenir-parrain`} class="btn-red">Devenir parrain ou marraine</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ GALLERY snippet ═══════════════════════════════════════════ -->
+<section class="section bg-stone">
+  <div class="section-inner">
+    <div style="margin-bottom:2.5rem;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem">
+      <div>
+        <span class="section-tag">Sur le terrain</span>
+        <h2 class="section-title" style="margin-bottom:0">Nos actions en images</h2>
+      </div>
+      <a href={`${BASE}/dernieres-nouvelles`} class="btn-red" style="font-size:0.85rem">Toutes les nouvelles →</a>
+    </div>
+    <div class="photo-grid">
+      <img src={`${BASE}/assets/images/IMG_20221103_121345-1-1024x768.jpg`} alt="Mission Collique" loading="lazy" />
+      <img src={`${BASE}/assets/images/IMG_20221104_102402-768x1024.jpg`} alt="Enfants casitas" loading="lazy" />
+      <img src={`${BASE}/assets/images/IMG_20221105_191530-FOTO-LISTA-PADRINOS-1024x460.jpg`} alt="Liste padrinos" loading="lazy" />
+      <img src={`${BASE}/assets/images/IMG_20221103_173649-1024x768.jpg`} alt="Activités" loading="lazy" />
+      <img src={`${BASE}/assets/images/IMG_20221104_115950-1024x768.jpg`} alt="Repas Collique" loading="lazy" />
+      <img src={`${BASE}/assets/images/received_1757209797774632-1024x768.jpeg`} alt="Équipe bénévole" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA DON ═══════════════════════════════════════════════════ -->
+<section class="section bg-white">
+  <div class="section-inner">
+    <div class="cta-banner">
+      <h2>Votre générosité change des vies</h2>
+      <p>
+        Vos dons financent les repas quotidiens, la scolarité, les fournitures scolaires
+        et les projets d'infrastructure. 100% de votre don est utilisé sur le terrain.
+      </p>
+      <a href={`${BASE}/don`} class="btn-primary">Faire un don — Déductible à 66%</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ACTUALITÉS snippet ════════════════════════════════════════ -->
+<section class="section bg-cream">
+  <div class="section-inner">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;margin-bottom:2rem">
+      <div>
+        <span class="section-tag">Actualités</span>
+        <h2 class="section-title" style="margin-bottom:0">Restez informés</h2>
+      </div>
+      <a href={`${BASE}/dernieres-nouvelles`} class="btn-red" style="font-size:0.85rem">Toutes les news →</a>
+    </div>
+    <div class="grid-3">
+      <a href={`${BASE}/dernieres-nouvelles`} class="card">
+        <img src={`${BASE}/assets/images/IMG-20231223-WA0015-2-770x1024.jpg`} alt="Nouvelles" class="card-img" />
+        <div class="card-body">
+          <span class="card-tag">Terrain</span>
+          <h3 class="card-title">Dernières nouvelles de Collique</h3>
+          <p class="card-desc">Retrouvez toutes les actualités récentes de notre équipe au Pérou.</p>
+          <div class="card-arrow">Lire →</div>
+        </div>
+      </a>
+      <a href={`${BASE}/journaux`} class="card">
+        <img src={`${BASE}/assets/images/img_0218-3-1024x1024.jpg`} alt="Journaux" class="card-img"
+          onerror="this.src='/perou-amitie-solidarite/assets/images/Logo-perou-asso-1024x304.png';this.style.objectFit='contain';this.style.padding='2rem';this.style.background='#f5f5f4'" />
+        <div class="card-body">
+          <span class="card-tag">Publication</span>
+          <h3 class="card-title">Nos journaux associatifs</h3>
+          <p class="card-desc">Téléchargez nos bulletins d'information et les comptes rendus de missions.</p>
+          <div class="card-arrow">Voir →</div>
+        </div>
+      </a>
+      <a href={`${BASE}/benevolat`} class="card">
+        <img src={`${BASE}/assets/images/IMG_20191018_152356-1024x768.jpg`} alt="Bénévolat" class="card-img" />
+        <div class="card-body">
+          <span class="card-tag">Engagement</span>
+          <h3 class="card-title">Partir en mission bénévole</h3>
+          <p class="card-desc">Rejoignez-nous sur le terrain au Pérou ou participez en France.</p>
+          <div class="card-arrow">Rejoindre →</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
 
 </MainLayout>
+
+<style>
+@media (max-width: 900px) {
+  .section-inner > div[style*="grid-template-columns:1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+</style>

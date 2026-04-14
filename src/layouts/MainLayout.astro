@@ -1,77 +1,210 @@
 ---
-import type { CollectionEntry } from 'astro:content';
 import '../styles/global.css';
+import { navigation } from '../data/navigation';
 
 interface Props {
   title: string;
   description?: string;
-  entry?: CollectionEntry<'pages'>;
+  heroImage?: string;
+  heroTitle?: string;
+  breadcrumb?: Array<{label: string; href?: string}>;
+  showPageHero?: boolean;
 }
 
-const { title, description = "Pérou Amitié Solidarité — Association humanitaire franco-péruvienne." } = Astro.props;
+const {
+  title,
+  description = "Pérou Amitié Solidarité — Association humanitaire franco-péruvienne pour les enfants défavorisés.",
+  heroImage,
+  heroTitle,
+  breadcrumb = [],
+  showPageHero = false,
+} = Astro.props;
+
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const currentPath = Astro.url.pathname;
 ---
 
 <!doctype html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description} />
-    <meta name="robots" content="index, follow" />
-    <link rel="canonical" href={canonicalURL} />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href={canonicalURL} />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={`${title} | Pérou Amitié Solidarité`} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonicalURL} />
+  {heroImage && <meta property="og:image" content={heroImage} />}
+  <title>{title} | Pérou Amitié Solidarité</title>
+  <link rel="icon" type="image/png" href="/perou-amitie-solidarite/assets/images/Logo-perou-asso-1024x304.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+</head>
 
-    <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content={`${title} | Pérou Amitié Solidarité`} />
-    <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonicalURL} />
+<body>
 
-    <title>{title} | Pérou Amitié Solidarité</title>
+<!-- ══ HEADER ══════════════════════════════════════════════════════ -->
+<header class="site-header">
+  <div class="nav-container">
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  </head>
+    <!-- Logo -->
+    <a href="/perou-amitie-solidarite/" class="nav-logo">
+      <span style="font-size:1.8rem">🇵🇪</span>
+      <div class="nav-logo-text">
+        <strong>Pérou Amitié Solidarité</strong>
+        <span>Association humanitaire</span>
+      </div>
+    </a>
 
-  <body class="bg-stone-50 text-stone-800 font-sans antialiased">
+    <!-- Desktop nav -->
+    <ul class="nav-menu" role="list">
+      {navigation.map(item => (
+        <li class="nav-item">
+          <a href={item.href} class={`nav-link${currentPath.startsWith(item.href) ? ' active' : ''}`}>
+            {item.label}
+            {item.children && (
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor">
+                <path d="M1 3L5 7L9 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+              </svg>
+            )}
+          </a>
+          {item.children && (
+            <div class="nav-dropdown">
+              {item.children.map((child: any) => {
+                if ('section' in child) return <div class="nav-dropdown-section">{child.section}</div>;
+                if ('divider' in child) return <div class="nav-divider"></div>;
+                return <a href={child.href}>{child.label}</a>;
+              })}
+            </div>
+          )}
+        </li>
+      ))}
+      <li>
+        <a href="/perou-amitie-solidarite/don" class="nav-link nav-cta">❤️ Faire un don</a>
+      </li>
+    </ul>
 
-    <!-- Header -->
-    <header class="bg-red-800 text-white shadow-md">
-      <div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
-        <a href="/" class="flex items-center gap-3 hover:opacity-90 transition-opacity">
-          <span class="text-2xl">🇵🇪</span>
-          <div>
-            <p class="font-bold text-lg leading-tight">Pérou Amitié Solidarité</p>
-            <p class="text-red-200 text-xs">Ensemble pour un monde meilleur</p>
-          </div>
-        </a>
-        <nav class="hidden md:flex gap-5 text-sm font-medium">
-          <a href="/" class="hover:text-red-200 transition-colors">Accueil</a>
-          <a href="/association" class="hover:text-red-200 transition-colors">L'Association</a>
-          <a href="/parrainage" class="hover:text-red-200 transition-colors">Parrainage</a>
-          <a href="/projets" class="hover:text-red-200 transition-colors">Projets</a>
-          <a href="/don" class="hover:text-red-200 transition-colors bg-amber-500 text-white px-3 py-1 rounded-full hover:bg-amber-400">Faire un don</a>
+    <!-- Hamburger mobile -->
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile nav -->
+<nav class="nav-mobile" id="mobile-nav" aria-hidden="true">
+  <a href="/perou-amitie-solidarite/" style="font-weight:700;font-size:1rem;color:#8B1919">🏠 Accueil</a>
+  {navigation.map(item => (
+    <div>
+      <div class="mobile-cat">{item.label}</div>
+      <div class="mobile-sub">
+        {item.children?.map((child: any) => {
+          if ('section' in child || 'divider' in child) return null;
+          return <a href={child.href}>{child.label}</a>;
+        })}
+      </div>
+    </div>
+  ))}
+  <div style="padding:1rem">
+    <a href="/perou-amitie-solidarite/don" class="btn-primary" style="justify-content:center">❤️ Faire un don</a>
+  </div>
+</nav>
+
+<!-- ══ PAGE HERO (inner pages) ═════════════════════════════════════ -->
+{showPageHero && (
+  <div class="page-hero">
+    <div class="page-hero-bg" style={heroImage ? `background-image:url('${heroImage}')` : 'background:#8B1919'} />
+    <div class="page-hero-content">
+      {breadcrumb.length > 0 && (
+        <nav class="breadcrumb" aria-label="Fil d'Ariane">
+          <a href="/perou-amitie-solidarite/">Accueil</a>
+          {breadcrumb.map((crumb, i) => (
+            <>
+              <span>›</span>
+              {crumb.href && i < breadcrumb.length - 1
+                ? <a href={crumb.href}>{crumb.label}</a>
+                : <span style="color:rgba(255,255,255,0.9)">{crumb.label}</span>
+              }
+            </>
+          ))}
         </nav>
+      )}
+      <h1>{heroTitle || title}</h1>
+    </div>
+  </div>
+)}
+
+<!-- ══ MAIN CONTENT ════════════════════════════════════════════════ -->
+<main>
+  <slot />
+</main>
+
+<!-- ══ FOOTER ══════════════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+        <h2>🇵🇪 Pérou Amitié Solidarité</h2>
+        <p>Association loi 1901 fondée en 2003. Nous aidons les enfants défavorisés du bidonville de Collique (Lima) et de l'île d'Amantani grâce à vos parrainages.</p>
+        <p style="font-size:0.78rem;color:#78716C">Siège social : Baurech, Gironde (33)</p>
       </div>
-    </header>
 
-    <!-- Contenu principal -->
-    <main class="max-w-4xl mx-auto px-4 py-10 min-h-[70vh]">
-      <slot />
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-stone-800 text-stone-300 mt-16">
-      <div class="max-w-5xl mx-auto px-4 py-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
-        <p>© {new Date().getFullYear()} Pérou Amitié Solidarité — Association loi 1901</p>
-        <div class="flex gap-6">
-          <a href="/don" class="hover:text-white transition-colors">Faire un don</a>
-          <a href="/parrainage" class="hover:text-white transition-colors">Parrainage</a>
-          <a href="/contact" class="hover:text-white transition-colors">Contact</a>
-          <a href="http://facebook.com/perouamitiesolidariteofficiel" target="_blank" rel="noopener" class="hover:text-white transition-colors">Facebook</a>
-        </div>
+      <div class="footer-col">
+        <h3>L'Association</h3>
+        <a href="/perou-amitie-solidarite/association">Qui sommes-nous ?</a>
+        <a href="/perou-amitie-solidarite/equipes">Nos équipes</a>
+        <a href="/perou-amitie-solidarite/partenaires">Nos partenaires</a>
+        <a href="/perou-amitie-solidarite/bilan-financier">Bilan financier</a>
       </div>
-    </footer>
 
-  </body>
+      <div class="footer-col">
+        <h3>Agir</h3>
+        <a href="/perou-amitie-solidarite/parrainage">Parrainage</a>
+        <a href="/perou-amitie-solidarite/don">Faire un don</a>
+        <a href="/perou-amitie-solidarite/benevolat">Bénévolat</a>
+        <a href="/perou-amitie-solidarite/devenir-parrain">Devenir parrain</a>
+      </div>
+
+      <div class="footer-col">
+        <h3>Zones d'action</h3>
+        <a href="/perou-amitie-solidarite/zone-collique">Collique (Lima)</a>
+        <a href="/perou-amitie-solidarite/zone-casitas">Casitas</a>
+        <a href="/perou-amitie-solidarite/zone-amantani">Amantani</a>
+        <a href="/perou-amitie-solidarite/projets">Nos projets</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© {new Date().getFullYear()} Pérou Amitié Solidarité — Association loi 1901 — Tous droits réservés</p>
+      <div style="display:flex;gap:1rem;align-items:center">
+        <a href="https://www.facebook.com/perouamitiesolidariteofficiel" target="_blank" rel="noopener" style="color:#A8A29E;font-size:0.82rem">Facebook</a>
+        <span class="footer-badge">🇵🇪 Depuis 2003</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Hamburger toggle
+  const btn = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobile-nav');
+  btn?.addEventListener('click', () => {
+    const isOpen = mobileNav?.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(isOpen));
+    mobileNav?.setAttribute('aria-hidden', String(!isOpen));
+  });
+  // Close mobile on link click
+  mobileNav?.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+      btn?.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+
+</body>
 </html>

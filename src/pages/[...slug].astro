@@ -2,127 +2,282 @@
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import MainLayout from '../layouts/MainLayout.astro';
 
+const BASE = '/perou-amitie-solidarite';
 
-// ──────────────────────────────────────────────
-// Carte des sous-pages par slug parent
-// Utilisée pour générer la grille de navigation
-// sur les pages quasi-vides (menus de catégorie)
-// ──────────────────────────────────────────────
-const CHILDREN_MAP: Record<string, { slug: string; title: string; description: string }[]> = {
+// ── Seuil pages-menu ──────────────────────────────────────────────
+const THIN_THRESHOLD = 200;
+
+// ── Carte des sous-pages par id ───────────────────────────────────
+type Child = { slug: string; title: string; desc: string; icon: string; img?: string };
+const CHILDREN_MAP: Record<string, Child[]> = {
   'types-parrainage': [
-    { slug: 'parrainage-repas',     title: 'Parrainage Repas',     description: "26 EUR / mois — Offrez un repas quotidien a un enfant de Collique." },
-    { slug: 'parrainage-etudes',    title: 'Parrainage Etudes',    description: "A partir de 35 EUR — Financez la scolarite d'un jeune Peruvien." },
-    { slug: 'parrainage-maitresse', title: 'Parrainage Maitresse', description: "25 EUR / mois — Soutenez une institutrice de Collique." },
+    { slug: 'parrainage-repas',     title: 'Parrainage Repas — 26€/mois',   desc: 'Un repas chaud chaque jour pour un enfant de Collique.',      icon: '🍽️', img: 'Repas.png' },
+    { slug: 'parrainage-etudes',    title: 'Parrainage Études — dès 35€',   desc: 'Financez la scolarité jusqu\'aux études supérieures.',        icon: '📚', img: 'IMG_20221103_114325-1-1024x768.jpg' },
+    { slug: 'parrainage-maitresse', title: 'Parrainage Maîtresse — 25€',    desc: 'Soutenez une institutrice des casitas de Collique.',          icon: '👩‍🏫', img: 'IMG_20221104_115245-768x1024.jpg' },
   ],
   'agir': [
-    { slug: 'benevolat',    title: 'Benevolat et Stage', description: "Rejoignez l'equipe benevole en France ou au Perou." },
-    { slug: 'temoignages',  title: 'Temoignages',        description: "Recits de benevoles et de parrains engages." },
+    { slug: 'benevolat',    title: 'Bénévolat et Stage',  desc: 'Partez en mission au Pérou ou engagez-vous en France.',   icon: '✈️', img: 'IMG_20191018_152356-1024x768.jpg' },
+    { slug: 'temoignages',  title: 'Témoignages',         desc: 'Récits de bénévoles et de parrains engagés.',             icon: '💬', img: 'Maite-223x300.jpg' },
   ],
   'je-minforme': [
-    { slug: 'association',       title: "L'Association",   description: "Qui sommes-nous ? Notre histoire et nos valeurs." },
-    { slug: 'equipes',           title: 'Nos Equipes',     description: 'Les membres actifs en France et au Perou.' },
-    { slug: 'partenaires',       title: 'Nos Partenaires', description: 'Les organisations qui nous soutiennent.' },
-    { slug: 'bilan-financier',   title: 'Bilan Financier', description: 'Transparence sur nos comptes et notre gestion.' },
+    { slug: 'association',     title: "L'Association",        desc: "Notre histoire, nos valeurs, notre mission depuis 2003.",        icon: '🤝', img: 'imgp2516.jpg' },
+    { slug: 'equipes',         title: 'Nos Équipes',           desc: 'Les membres actifs en France et au Pérou.',                    icon: '👥', img: 'IMG_7396-1.jpg' },
+    { slug: 'partenaires',     title: 'Nos Partenaires',       desc: 'Les organisations qui nous soutiennent.',                      icon: '🤲', img: 'logo-belloc-1.png' },
+    { slug: 'bilan-financier', title: 'Bilan Financier',       desc: 'Transparence sur nos ressources et leur utilisation.',         icon: '📊', img: 'Logo-perou-asso-1024x304.png' },
   ],
   'actualites': [
-    { slug: 'dernieres-nouvelles', title: 'Dernieres Nouvelles', description: "Toute l'actualite recente de l'association." },
-    { slug: 'journaux',            title: 'Journaux',            description: 'Nos bulletins associatifs a telecharger.' },
+    { slug: 'dernieres-nouvelles', title: 'Dernières Nouvelles', desc: "Toute l'actualité récente de nos actions sur le terrain.",  icon: '📰', img: 'IMG-20231223-WA0015-2-770x1024.jpg' },
+    { slug: 'journaux',            title: 'Journaux',            desc: 'Nos bulletins associatifs à télécharger.',                  icon: '📄', img: 'Logo-perou-asso-1024x304.png' },
+  ],
+  'actions': [
+    { slug: 'zone-collique',  title: 'Collique · Lima',      desc: 'Notre zone principale : repas, santé, éducation.',    icon: '🏘️', img: 'Map_of_Lima_highlighting_Comas-2.png' },
+    { slug: 'zone-casitas',   title: 'Les Casitas',          desc: 'Classes maternelles et soutien scolaire.',            icon: '🏫', img: '20429586_1447639341992507_3194714572492583571_n.jpg' },
+    { slug: 'zone-amantani',  title: "Amantani · Titicaca",  desc: "L'île du lac Titicaca et le collège Miguel Grau.",    icon: '🏔️', img: '400px-Localizacion_de_Amantani-2.jpg' },
+    { slug: 'projets',        title: 'Nos Projets',          desc: "Eau potable, construction, éducation — nos projets.", icon: '🔨', img: 'IMG_20221105_165039.jpg' },
+  ],
+  'parrainage': [
+    { slug: 'parrainage-repas',     title: 'Parrainage Repas',     desc: '26€/mois — un repas chaque jour.',     icon: '🍽️', img: 'Repas.png' },
+    { slug: 'parrainage-etudes',    title: 'Parrainage Études',    desc: "dès 35€ — soutien à la scolarité.",    icon: '📚', img: 'IMG_20221103_114325-1-1024x768.jpg' },
+    { slug: 'parrainage-maitresse', title: 'Parrainage Maîtresse', desc: '25€/mois — une institutrice soutenue.', icon: '👩‍🏫', img: 'IMG_20221104_115245-768x1024.jpg' },
+    { slug: 'devenir-parrain',      title: 'Devenir parrain',      desc: 'Comment vous engager concrètement.',    icon: '❤️', img: 'imgp2516.jpg' },
   ],
 };
 
+// ── Hero images par page ──────────────────────────────────────────
+const HERO_MAP: Record<string, string> = {
+  'association':         '20429586_1447639341992507_3194714572492583571_n.jpg',
+  'equipes':             'IMG_7396-1.jpg',
+  'equipe-france':       'IMG_20221105_170850.jpg',
+  'equipe-perou':        'IMG_20221103_200759-768x1024.jpg',
+  'partenaires':         'logo-belloc-1.png',
+  'bilan-financier':     'Logo-perou-asso-1024x304.png',
+  'perou-histoire':      'INCAS.gif',
+  'perou-demographie':   'Peru-y-situado-en-LA-2.jpg',
+  'perou-geographie':    'machu-pichu-639174_640.jpg',
+  'perou-patrimoine':    'machu-pichu-639174_640.jpg',
+  'perou-economie':      'Peru-y-situado-en-LA-2.jpg',
+  'perou-education':     'IMG_20221103_114325-1-1024x768.jpg',
+  'perou-actualite':     'IMG-20231223-WA0015-2-770x1024.jpg',
+  'parrainage':          'Repas.png',
+  'parrainage-repas':    'image-53-1024x685.png',
+  'parrainage-etudes':   'IMG_20221103_114325-2-1024x768.jpg',
+  'parrainage-maitresse':'IMG_20221104_115245-768x1024.jpg',
+  'devenir-parrain':     'IMG_20221105_191530-FOTO-LISTA-PADRINOS-1024x460.jpg',
+  'benevolat':           'IMG_20191018_152356-1024x768.jpg',
+  'temoignages':         'Maite-223x300.jpg',
+  'journaux':            'Logo-perou-asso-1024x304.png',
+  'dernieres-nouvelles': 'IMG-20231223-WA0015-2-770x1024.jpg',
+  'don':                 'imgp2516.jpg',
+  'actions':             'reg-cus-ville001-1280x800.jpeg',
+  'projets':             'IMG_20221105_165039.jpg',
+  'zone-collique':       'Map_of_Lima_highlighting_Comas-2.png',
+  'zone-casitas':        '20429586_1447639341992507_3194714572492583571_n.jpg',
+  'zone-amantani':       '400px-Localizacion_de_Amantani-2.jpg',
+  'je-minforme':         'imgp2516.jpg',
+  'agir':                'IMG_20191018_152356-1024x768.jpg',
+  'actualites':          'IMG-20231223-WA0015-2-770x1024.jpg',
+  'types-parrainage':    'Repas.png',
+};
 
-// Seuil en caractères de contenu brut en-dessous duquel
-// on considère la page comme une page-menu (affichage grille)
-const THIN_CONTENT_THRESHOLD = 200;
+// ── Sidebar nav links ─────────────────────────────────────────────
+type NavLink = { label: string; href: string };
+const SIDEBAR_NAV: Record<string, { title: string; links: NavLink[] }> = {
+  association:  { title: "L'Association", links: [
+    { label: "Qui sommes-nous ?",  href: `${BASE}/association` },
+    { label: "Nos Équipes",        href: `${BASE}/equipes` },
+    { label: "Équipe France",      href: `${BASE}/equipe-france` },
+    { label: "Équipe Pérou",       href: `${BASE}/equipe-perou` },
+    { label: "Nos Partenaires",    href: `${BASE}/partenaires` },
+    { label: "Bilan Financier",    href: `${BASE}/bilan-financier` },
+  ]},
+  equipes:       { title: "L'Association", links: [
+    { label: "Qui sommes-nous ?",  href: `${BASE}/association` },
+    { label: "Nos Équipes",        href: `${BASE}/equipes` },
+    { label: "Équipe France",      href: `${BASE}/equipe-france` },
+    { label: "Équipe Pérou",       href: `${BASE}/equipe-perou` },
+    { label: "Nos Partenaires",    href: `${BASE}/partenaires` },
+    { label: "Bilan Financier",    href: `${BASE}/bilan-financier` },
+  ]},
+};
+// Propagate same sidebar for association sub-pages
+['equipe-france','equipe-perou','partenaires','bilan-financier'].forEach(k => {
+  SIDEBAR_NAV[k] = SIDEBAR_NAV.equipes;
+});
 
+const PARRAINAGE_SIDEBAR = { title: "Parrainage", links: [
+  { label: "Vue d'ensemble",        href: `${BASE}/parrainage` },
+  { label: "Parrainage Repas",      href: `${BASE}/parrainage-repas` },
+  { label: "Parrainage Études",     href: `${BASE}/parrainage-etudes` },
+  { label: "Parrainage Maîtresse",  href: `${BASE}/parrainage-maitresse` },
+  { label: "Devenir parrain",       href: `${BASE}/devenir-parrain` },
+]};
+['parrainage','parrainage-repas','parrainage-etudes','parrainage-maitresse','devenir-parrain'].forEach(k => {
+  SIDEBAR_NAV[k] = PARRAINAGE_SIDEBAR;
+});
+
+const PEROU_SIDEBAR = { title: "Le Pérou", links: [
+  { label: "Histoire",           href: `${BASE}/perou-histoire` },
+  { label: "Démographie",        href: `${BASE}/perou-demographie` },
+  { label: "Géographie",         href: `${BASE}/perou-geographie` },
+  { label: "Patrimoine Culturel",href: `${BASE}/perou-patrimoine` },
+  { label: "Économie",           href: `${BASE}/perou-economie` },
+  { label: "Éducation & Santé",  href: `${BASE}/perou-education` },
+  { label: "Actualité politique",href: `${BASE}/perou-actualite` },
+]};
+['perou-histoire','perou-demographie','perou-geographie','perou-patrimoine','perou-economie','perou-education','perou-actualite'].forEach(k => {
+  SIDEBAR_NAV[k] = PEROU_SIDEBAR;
+});
+
+const ZONES_SIDEBAR = { title: "Zones d'action", links: [
+  { label: "Collique · Lima",    href: `${BASE}/zone-collique` },
+  { label: "Les Casitas",        href: `${BASE}/zone-casitas` },
+  { label: "Amantani · Titicaca",href: `${BASE}/zone-amantani` },
+  { label: "Nos Projets",        href: `${BASE}/projets` },
+]};
+['zone-collique','zone-casitas','zone-amantani','projets','actions'].forEach(k => {
+  SIDEBAR_NAV[k] = ZONES_SIDEBAR;
+});
+
+const AGIR_SIDEBAR = { title: "J'agis", links: [
+  { label: "Bénévolat et Stage", href: `${BASE}/benevolat` },
+  { label: "Témoignages",        href: `${BASE}/temoignages` },
+]};
+['benevolat','temoignages','agir'].forEach(k => {
+  SIDEBAR_NAV[k] = AGIR_SIDEBAR;
+});
+
+const ACTU_SIDEBAR = { title: "Actualités", links: [
+  { label: "Dernières Nouvelles", href: `${BASE}/dernieres-nouvelles` },
+  { label: "Journaux",            href: `${BASE}/journaux` },
+]};
+['actualites','dernieres-nouvelles','journaux'].forEach(k => {
+  SIDEBAR_NAV[k] = ACTU_SIDEBAR;
+});
+
+// ── Static paths ──────────────────────────────────────────────────
 export async function getStaticPaths() {
   const pages = await getCollection('pages');
   return pages
-    .filter((entry) => entry.id !== 'index') // géré par src/pages/index.astro
-    .map((entry) => ({
-      params: { slug: entry.id },
-      props: { entry },
-    }));
+    .filter(e => e.id !== 'index')
+    .map(e => ({ params: { slug: e.id }, props: { entry: e } }));
 }
 
-interface Props {
-  entry: CollectionEntry<'pages'>;
-}
-
+interface Props { entry: CollectionEntry<'pages'>; }
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 
-// Détecter si la page est une page-menu (contenu trop court)
 const rawBody = entry.body ?? '';
-const isThinContent = rawBody.trim().length < THIN_CONTENT_THRESHOLD;
+const isThin = rawBody.trim().length < THIN_THRESHOLD;
 const children = CHILDREN_MAP[entry.id] ?? [];
-
-const pageTitle = entry.data.title;
+const heroImg = HERO_MAP[entry.id];
+const heroImgUrl = heroImg ? `${BASE}/assets/images/${heroImg}` : undefined;
+const sidebar = SIDEBAR_NAV[entry.id];
+const title = entry.data.title;
+const currentPath = `/perou-amitie-solidarite/${entry.id}`;
 ---
 
-<MainLayout title={pageTitle} description={entry.data.description}>
+<MainLayout
+  title={title}
+  description={entry.data.description}
+  heroImage={heroImgUrl}
+  heroTitle={title}
+  showPageHero={true}
+  breadcrumb={[{ label: title }]}
+>
 
-  <article>
-    <!-- Breadcrumb -->
-    <nav class="text-sm text-stone-500 mb-6" aria-label="Fil d'Ariane">
-      <a href="/" class="hover:text-red-700 transition-colors">Accueil</a>
-      <span class="mx-2">›</span>
-      <span class="text-stone-700 font-medium">{pageTitle}</span>
-    </nav>
+<!-- ── ARTICLE ── -->
+<div class="article-layout">
 
-    <!-- Titre de page -->
-    <h1 class="text-3xl md:text-4xl font-bold text-red-800 mb-8 leading-tight">
-      {pageTitle}
-    </h1>
-
-    {isThinContent && children.length > 0 ? (
-      <!-- ── Page-menu : grille de navigation ── -->
+  <!-- Main content -->
+  <main>
+    {isThin && children.length > 0 ? (
+      <!-- Page-menu : grille de navigation -->
       <div>
-        <p class="text-stone-600 mb-8 text-lg">
+        <p style="color:#78716C;font-size:1.05rem;margin-bottom:2rem">
           Choisissez une rubrique pour en savoir plus :
         </p>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-          {children.map((child) => (
-            <a
-              href={`/${child.slug}`}
-              class="group block bg-white rounded-xl border border-stone-200 p-6 shadow-sm hover:shadow-md hover:border-red-300 transition-all duration-200"
-            >
-              <h2 class="text-lg font-semibold text-red-800 group-hover:text-red-600 transition-colors mb-2">
-                {child.title}
-              </h2>
-              <p class="text-stone-500 text-sm leading-relaxed">
-                {child.description}
-              </p>
-              <span class="inline-block mt-4 text-xs font-medium text-red-700 group-hover:translate-x-1 transition-transform">
-                Voir la rubrique →
-              </span>
+        <div class="menu-grid">
+          {children.map(child => (
+            <a href={`${BASE}/${child.slug}`} class="menu-card">
+              {child.img && (
+                <img
+                  src={`${BASE}/assets/images/${child.img}`}
+                  alt={child.title}
+                  style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:1rem"
+                />
+              )}
+              <div class="menu-card-icon">{child.icon}</div>
+              <h2>{child.title}</h2>
+              <p>{child.desc}</p>
+              <span class="menu-card-arrow">Voir la rubrique →</span>
             </a>
           ))}
         </div>
       </div>
     ) : (
-      <!-- ── Page avec contenu : rendu Markdown ── -->
-      <div class="prose prose-stone prose-lg max-w-none
-                  prose-headings:text-red-800
-                  prose-a:text-red-700 prose-a:no-underline hover:prose-a:underline
-                  prose-img:rounded-xl prose-img:shadow-md prose-img:my-6
-                  prose-blockquote:border-red-400 prose-blockquote:text-stone-600">
+      <!-- Contenu Markdown enrichi -->
+      <article class="article-body content-prose">
         <Content />
+      </article>
+    )}
+  </main>
+
+  <!-- Sidebar -->
+  <aside class="article-sidebar">
+
+    {sidebar && (
+      <div class="sidebar-box">
+        <div class="sidebar-box-title">{sidebar.title}</div>
+        <div class="sidebar-box-links">
+          {sidebar.links.map(link => (
+            <a href={link.href} class={currentPath === link.href ? 'active' : ''}>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink:0;opacity:0.5">
+                <path d="M5 3L9 7L5 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              {link.label}
+            </a>
+          ))}
+        </div>
       </div>
     )}
 
-    <!-- Lien retour source originale -->
-    {entry.data.source && (
-      <div class="mt-12 pt-6 border-t border-stone-200">
-        <p class="text-xs text-stone-400">
-          Source originale :
-          <a href={entry.data.source} target="_blank" rel="noopener noreferrer"
-             class="text-stone-500 hover:text-red-700 underline transition-colors">
-            {entry.data.source}
-          </a>
-        </p>
+    <div class="sidebar-cta">
+      <h3>❤️ Agir maintenant</h3>
+      <p>Un parrainage à partir de 25€/mois suffit à changer la vie d'un enfant.</p>
+      <a href={`${BASE}/parrainage`}>Parrainer un enfant</a>
+    </div>
+
+    <div class="sidebar-box">
+      <div class="sidebar-box-title">Don en ligne</div>
+      <div class="sidebar-box-links">
+        <a href={`${BASE}/don`}>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink:0;opacity:0.5">
+            <path d="M5 3L9 7L5 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          Faire un don — déductible 66%
+        </a>
+        <a href={`${BASE}/devenir-parrain`}>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink:0;opacity:0.5">
+            <path d="M5 3L9 7L5 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          Devenir parrain / marraine
+        </a>
+        <a href={`${BASE}/benevolat`}>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink:0;opacity:0.5">
+            <path d="M5 3L9 7L5 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          Partir en mission bénévole
+        </a>
       </div>
+    </div>
+
+    {entry.data.source && (
+      <p style="font-size:0.72rem;color:#A8A29E;line-height:1.5">
+        Source : <a href={entry.data.source} target="_blank" rel="noopener" style="color:inherit;text-decoration:underline" >{entry.data.source}</a>
+      </p>
     )}
-  </article>
+
+  </aside>
+</div>
 
 </MainLayout>
