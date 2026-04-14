@@ -29,6 +29,9 @@ BASE_URL = "https://www.perouamitiesolidarite.org"
 PAGES = [
     # ── Accueil ────────────────────────────────
     {"url": f"{BASE_URL}/",                                         "slug": "index",               "title": "Accueil"},
+    {"url": f"{BASE_URL}/je-minforme/",                            "slug": "je-minforme",          "title": "Je m'informe"},
+    {"url": f"{BASE_URL}/agir/",                                   "slug": "agir",                 "title": "J'agis"},
+    {"url": f"{BASE_URL}/contact/",                                "slug": "actualites",           "title": "Actualites"},
     # ── Association ────────────────────────────
     {"url": f"{BASE_URL}/qui-sommes-nous/",                        "slug": "association",          "title": "L'Association - Qui sommes-nous ?"},
     {"url": f"{BASE_URL}/nos-equipes/",                            "slug": "equipes",              "title": "Nos Equipes"},
