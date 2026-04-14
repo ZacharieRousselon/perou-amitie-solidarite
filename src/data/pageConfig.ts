@@ -76,7 +76,7 @@ export const HERO_MAP: Record<string, string> = {
   'devenir-parrain':     'IMG_20221105_191530-FOTO-LISTA-PADRINOS-1024x460.jpg',
   'benevolat':           'IMG_20191018_152356-1024x768.jpg',
   'temoignages':         'Maite-223x300.jpg',
-  'journaux':            'Logo-perou-asso-1024x304.png',
+  'journaux':            'IMG-20221223-WA0016-1024x770.jpg',
   'dernieres-nouvelles': 'IMG-20231223-WA0015-2-770x1024.jpg',
   'don':                 'imgp2516.jpg',
   'actions':             'reg-cus-ville001-1280x800.jpeg',
