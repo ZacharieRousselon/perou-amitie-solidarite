@@ -17,7 +17,7 @@ En fonction de leurs compétences, ils animent des ateliers sur la santé (hygi�
   <img src="/perou-amitie-solidarite/assets/images/13620918_1061258450586506_3718007022280220687_n.webp" alt="Moments de partage avec les enfants" width="400" height="400" loading="lazy" />
   <img src="/perou-amitie-solidarite/assets/images/36974060_672952786398875_2830651655886733312_n.webp" alt="Repas partagé entre bénévoles et enfants" width="400" height="400" loading="lazy" />
   <img src="/perou-amitie-solidarite/assets/images/49204777_2000148096697532_3680015063969693696_n.webp" alt="Bénévoles et jeunes de Collique" width="400" height="400" loading="lazy" />
-  <img src="/perou-amitie-solidarite/assets/images/11933430_902048469840839_9014373429401913289_n.webp" alt="Ateliers santé et sensibilisation" width="400" height="400" loading="lazy" />
+  <img src="/perou-amitie-solidarite/assets/images/11933430_902048469840839_9014733429401913289_n.webp" alt="Ateliers santé et sensibilisation" width="400" height="400" loading="lazy" />
   <img src="/perou-amitie-solidarite/assets/images/10610863_757220970990257_2881415471684489628_n.webp" alt="Activités sportives avec les enfants" width="400" height="400" loading="lazy" />
 </div>
 
