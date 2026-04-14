@@ -1,4 +1,4 @@
-﻿@import "tailwindcss";
+@import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
 /* ─── Design Tokens ─────────────────────────────── */
@@ -777,4 +777,285 @@ body {
   visibility: visible;
   transform: translateY(0);
   pointer-events: auto;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CONTENT PAGES — Design Système
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Masquer le blockquote "Source originale" (artifact de migration) */
+.content-prose blockquote:has(a[href*="perouamitiesolidarite.org"]) {
+  display: none;
+}
+
+/* Images dans le contenu prose — plus aérées et max-width raisonnables */
+.content-prose img {
+  border-radius: 10px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* ── Photo Gallery Grid ────────────────────────────────────────── */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 0.75rem;
+  margin: 1.75rem 0;
+}
+.photo-grid img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+  cursor: zoom-in;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.photo-grid img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.18);
+}
+
+/* ── Member Cards Grid ─────────────────────────────────────────── */
+.member-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 1.5rem;
+  margin: 1.75rem 0;
+}
+.member-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid #F5EFE6;
+}
+.member-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 32px rgba(0,0,0,0.12);
+}
+.member-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 0;
+  margin: 0;
+}
+.member-card-body {
+  padding: 1.1rem 1rem 1.25rem;
+}
+.member-name {
+  font-weight: 700;
+  font-size: 0.97rem;
+  color: #1C1917;
+  margin-bottom: 0.2rem;
+}
+.member-role {
+  font-size: 0.73rem;
+  color: var(--red-main);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.7rem;
+  line-height: 1.35;
+}
+.member-contact {
+  font-size: 0.78rem;
+  color: #78716C;
+  line-height: 1.65;
+}
+.member-contact a {
+  color: var(--red-main);
+  text-decoration: none;
+}
+.member-contact a:hover {
+  text-decoration: underline;
+}
+
+/* ── Partner Cards Grid ────────────────────────────────────────── */
+.partner-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 1.75rem 0;
+}
+.partner-card {
+  background: white;
+  border-radius: 16px;
+  border: 1px solid #E7E5E4;
+  padding: 1.75rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.partner-card:hover {
+  border-color: var(--red-main);
+  box-shadow: 0 6px 24px rgba(139,25,25,0.08);
+  transform: translateY(-2px);
+}
+.partner-logo {
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+.partner-logo img {
+  max-height: 60px;
+  max-width: 160px;
+  object-fit: contain;
+  border-radius: 0;
+  margin: 0;
+}
+.partner-name {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #1C1917;
+}
+.partner-desc {
+  font-size: 0.875rem;
+  color: #57534E;
+  line-height: 1.65;
+  flex: 1;
+}
+.partner-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--red-main);
+  text-decoration: none;
+}
+.partner-link:hover {
+  text-decoration: underline;
+}
+
+/* ── Testimonial ───────────────────────────────────────────────── */
+.testimonial {
+  background: linear-gradient(135deg, #FDF6F0, #FEF9F3);
+  border-left: 4px solid var(--red-main);
+  border-radius: 0 16px 16px 0;
+  padding: 2rem 2rem 1.5rem;
+  margin: 2rem 0;
+  position: relative;
+}
+.testimonial::before {
+  content: '\201C';
+  font-family: 'Playfair Display', serif;
+  font-size: 5rem;
+  color: var(--red-main);
+  opacity: 0.15;
+  position: absolute;
+  top: 0.25rem;
+  left: 1.25rem;
+  line-height: 1;
+}
+.testimonial-text {
+  font-size: 0.97rem;
+  line-height: 1.8;
+  color: #44403C;
+  font-style: italic;
+  margin-bottom: 1.25rem;
+}
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.testimonial-author img {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  margin: 0;
+}
+.testimonial-author-info strong {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #1C1917;
+}
+.testimonial-author-info span {
+  font-size: 0.78rem;
+  color: var(--red-main);
+}
+
+/* ── News Article ──────────────────────────────────────────────── */
+.news-article {
+  border-bottom: 1px solid #E7E5E4;
+  padding-bottom: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+.news-article:last-of-type {
+  border-bottom: none;
+}
+.news-date-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--red-main);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  margin-bottom: 0.75rem;
+}
+
+/* ── CTA Join Block ────────────────────────────────────────────── */
+.cta-join {
+  background: linear-gradient(135deg, var(--red-main), #A52020);
+  color: white;
+  border-radius: 16px;
+  padding: 2rem 2rem 1.75rem;
+  margin: 2.5rem 0;
+  text-align: center;
+}
+.cta-join p {
+  font-size: 1rem;
+  line-height: 1.7;
+  opacity: 0.92;
+  margin-bottom: 1.25rem;
+}
+.cta-join a {
+  display: inline-flex;
+  align-items: center;
+  background: white;
+  color: var(--red-main);
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background 0.15s, transform 0.1s;
+}
+.cta-join a:hover {
+  background: #FEF2F2;
+  transform: translateY(-1px);
+}
+
+/* ── Section Label (sous-titres stylisés) ──────────────────────── */
+.section-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--red-main);
+  border-bottom: 2px solid #F5EFE6;
+  padding-bottom: 0.5rem;
+  margin: 2.5rem 0 1.5rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .member-grid { grid-template-columns: repeat(2, 1fr); gap: 0.875rem; }
+  .partner-grid { grid-template-columns: 1fr; }
+  .photo-grid { grid-template-columns: repeat(2, 1fr); }
 }

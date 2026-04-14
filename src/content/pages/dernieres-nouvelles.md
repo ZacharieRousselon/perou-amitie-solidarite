@@ -1,188 +1,145 @@
-﻿---
-title: "Dernieres Nouvelles"
-source: "https://www.perouamitiesolidarite.org/dernieres-nouvelles/"
-scraped_at: "2026-04-14T13:34:03"
+---
+title: "Dernières Nouvelles"
+description: "Toute l'actualité récente de l'association Pérou Amitié Solidarité — actions sur le terrain, événements solidaires et nouvelles de Collique et Amantani."
 ---
 
-# Dernieres Nouvelles
+<div class="news-article">
 
-> Source originale : [https://www.perouamitiesolidarite.org/dernieres-nouvelles/](https://www.perouamitiesolidarite.org/dernieres-nouvelles/)
+<span class="news-date-badge">📅 Novembre 2024</span>
+
+## Inauguration de la Fontaine d'eau potable — Île d'Amantani
+
+Une étape historique pour l'île d'Amantani ! Après deux années de projet mené avec acharnement, la fontaine d'eau potable a été inaugurée en novembre 2024 grâce aux dons de nos parrains et au soutien de la Fondation Adrienne et Pierre Sommer.
+
+![Inauguration de la fontaine d'eau potable à Amantani](/perou-amitie-solidarite/assets/images/image.webp)
+
+</div>
 
 ---
 
+<div class="news-article">
 
-Novembre 2024
+<span class="news-date-badge">📅 Mars 2025</span>
 
+## Panneaux photovoltaïques sur les Casitas
 
-![Image](/perou-amitie-solidarite/assets/images/image.png)
+Denis Lafage a réussi son pari : installer des panneaux photovoltaïques sur les toits des Casitas à Collique. Grâce à son énergie, sa volonté d'améliorer le quotidien des enfants et ses compétences techniques, ce projet a vu le jour en février 2025. Il a également convaincu la société **ALTUS Énergie** de s'impliquer dans l'aventure.
 
+</div>
 
-DECEMBRE 2023
+---
 
+<div class="news-article">
 
-Chère marraine, cher parrain, Les membres du bureau de Pérou Amitié Solidarité se joignent à moi pour vous souhaiter une belle année 2024. Plus que jamais nous sommes déterminés à œuvrer ensemble pour le bien être des enfants de Collique et de ceux d’Amantani. Nous sommes heureux de vous retrouver à l’assemblée générale, le 13 janvier à 15h à Rezé  près de Nantes. Nous vous présenterons le bilan des actions réalisées en 2023 ainsi que le bilan financier et les projets pour 2024. Il est encore temps de confirmer votre présence ou d’envoyer votre procuration. Vous recevrez courant février le compte-rendu. Merci pour votre soutien et votre solidarité. Cela permet de croire à un monde meilleur. Bien cordialement Nathalie Modet, présidente et le bureau de Pérou Amitié Solidarité
+<span class="news-date-badge">📅 Décembre 2023</span>
 
+## Vœux 2024 — Message de la Présidente
 
-![Image](/perou-amitie-solidarite/assets/images/FB_IMG_170343501986218240.jpg)
+> Chère marraine, cher parrain, les membres du bureau de Pérou Amitié Solidarité se joignent à moi pour vous souhaiter une belle année 2024. Plus que jamais nous sommes déterminés à œuvrer ensemble pour le bien-être des enfants de Collique et de ceux d'Amantani.
+>
+> — *Nathalie Modet, Présidente*
 
+![Message de vœux 2024](/perou-amitie-solidarite/assets/images/FB_IMG_170343501986218240.webp)
 
-## Noël 2023 à Collique
+</div>
 
+---
 
-Comme chaque année les parrains de l’Association ont voulu participer à l’achat des cadeaux pour leurs filleuls. Isabel et Valentine se sont mobilisées afin de choisir les cadeaux et les transporter jusqu’à Collique. Sur place, les dames chargées de la restauration ont décoré « el botiquin » afin d’accueillir le mieux possible tous les enfants et jeunes parrainés. C’était une réussite!!  Merci à vous tous pour votre implication.
+<div class="news-article">
 
+<span class="news-date-badge">📅 Noël 2023 · Collique</span>
 
-![Image](/perou-amitie-solidarite/assets/images/IMG-20231223-WA0015-2-770x1024.jpg)
+## Fête de Noël à Collique — Cadeaux et Sourires
 
+Comme chaque année les parrains de l'association ont voulu participer à l'achat des cadeaux pour leurs filleuls. Isabel et Valentine se sont mobilisées afin de choisir les cadeaux et les transporter jusqu'à Collique. Sur place, les dames chargées de la restauration ont décoré *El Botiquín* afin d'accueillir le mieux possible tous les enfants et jeunes parrainés.
 
-![Image](/perou-amitie-solidarite/assets/images/image-2.png)
+**C'était une réussite ! Merci à vous tous pour votre implication.**
 
+<div class="photo-grid">
+  <img src="/perou-amitie-solidarite/assets/images/IMG-20231223-WA0015-2-770x1024.webp" alt="Distribution des cadeaux à Collique - Noël 2023" width="770" height="1024" loading="lazy" />
+  <img src="/perou-amitie-solidarite/assets/images/image-2.webp" alt="Préparation des paquets cadeaux" width="400" height="400" loading="lazy" />
+  <img src="/perou-amitie-solidarite/assets/images/image-1.webp" alt="Père Noël prêt pour la distribution" width="400" height="400" loading="lazy" />
+  <img src="/perou-amitie-solidarite/assets/images/image-6.webp" alt="La fête peut commencer à Collique !" width="400" height="400" loading="lazy" />
+  <img src="/perou-amitie-solidarite/assets/images/image-4.webp" alt="Cadeaux alimentaires pour les familles" width="400" height="400" loading="lazy" />
+  <img src="/perou-amitie-solidarite/assets/images/image-5.webp" alt="Des enfants heureux à Collique" width="400" height="400" loading="lazy" />
+</div>
 
-![Image](/perou-amitie-solidarite/assets/images/image-1.png)
+*Tous les cadeaux sont exactement les mêmes pour ne pas créer de différences — des aliments pour le repas de Noël en famille.*
 
+</div>
 
-Père Noël est prêt pour la distribution des paquets ….
+---
 
+<div class="news-article">
 
-![Image](/perou-amitie-solidarite/assets/images/image-6.png)
+<span class="news-date-badge">📅 Octobre 2022</span>
 
+## Cross Solidaire — Collège Anatole France de Cadillac
 
-LA FÊTE PEUT COMMENCER ….
+Le vendredi 20 octobre 2022, les collégiens ont effectué leur cross annuel avec beaucoup de motivation. Ils ont été généreux et ont réussi à récolter environ **4 200€** partagés entre l'association des Chiens-guides aveugles de Mérignac et notre association.
 
+</div>
 
-![Image](/perou-amitie-solidarite/assets/images/image-7.png)
+---
 
+<div class="news-article">
 
-Tous les cadeaux sont exactement les mêmes pour ne pas créer des differences …
+<span class="news-date-badge">📅 Novembre 2022</span>
 
+## Visite et Suivi des Étudiants à Collique
 
-Ces cadeaux ce sont des aliments pour leur repas de Noël en famille….
+*Témoignage d'Ana Rosa Goudrias, Chargée de Mission*
 
+<div class="photo-grid">
+  <img src="/perou-amitie-solidarite/assets/images/IMG_20221103_173649-1024x768.webp" alt="Réunion avec les étudiants de Collique" width="1024" height="768" loading="lazy" />
+  <img src="/perou-amitie-solidarite/assets/images/IMG_20221105_170850.webp" alt="Coaching individuel des étudiants" width="400" height="400" loading="lazy" />
+  <img src="/perou-amitie-solidarite/assets/images/IMG_20221105_172758.webp" alt="Suivi pédagogique à Collique" width="400" height="400" loading="lazy" />
+  <img src="/perou-amitie-solidarite/assets/images/IMG_20221105_165039.webp" alt="Discussions avec les jeunes de Collique" width="400" height="400" loading="lazy" />
+  <img src="/perou-amitie-solidarite/assets/images/IMG_20221105_151432-1.webp" alt="Distribution de dons matériels" width="400" height="400" loading="lazy" />
+  <img src="/perou-amitie-solidarite/assets/images/IMG_20221105_135039-1.webp" alt="Atelier orientation professionnelle" width="400" height="400" loading="lazy" />
+  <img src="/perou-amitie-solidarite/assets/images/IMG_20221105_161806.webp" alt="Moment de partage avec les étudiants" width="400" height="400" loading="lazy" />
+  <img src="/perou-amitie-solidarite/assets/images/IMG_20221104_172559-1.webp" alt="Visite du quartier de Collique" width="400" height="400" loading="lazy" />
+</div>
 
-![Image](/perou-amitie-solidarite/assets/images/image-4.png)
+En tant qu'enseignante universitaire, j'ai souhaité pouvoir aider sur place les jeunes compatriotes péruviens. Nous avons réuni dans le réfectoire de l'association tous les jeunes étudiants pour les informer des nouvelles dispositions concernant l'aide financière et l'orientation.
 
+Nous avons souhaité les **responsabiliser** : en tant que membres bénéficiaires de l'association, ils ont des droits mais aussi des devoirs.
 
-![Image](/perou-amitie-solidarite/assets/images/image-5.png)
+— *Ana Rosa GOUDRIAS, Chargée de Mission*
 
+</div>
 
-Des petits gestes qui changent leur vie…
+---
 
+<div class="news-article">
 
-## OCTOBRE 2022
+<span class="news-date-badge">📅 Octobre 2022</span>
 
+## Rencontres avec les Élèves du Lycée de la Trinité de Béziers
 
-- Panneaux photovoltaïques 6 mars 2025 Denis Lafage a réussi son pari : installer des panneaux photovoltaïques sur les toits des casitas. Grâce à son énergie et sa volonté d’améliorer le quotidien des enfants qu’il a croisés il y a quelques années, grâce ses compétences ce projet a pu voir le jour en février. Il a également convaincu la société ALTUS Read More
-- Cross solidaire du collège Anatole France de Cadillac 3 novembre 2022 le vendredi 20 octobre 2022, les collégiens ont fait leur cross annuel avec beaucoup de motivation. Ils ont été généreux et ont réussi à récolter environ 4200 EUR à partager entre l association des Chiens guide aveugle de Mérignac et notre association. La classe la plus solidaire en termes d argent récolté et de nombre Read More
-- Belles rencontres avec des élèves de Béziers et leurs professeurs 3 novembre 2022 Depuis 3 ans déjà, les élèves du lycée de la Trinité de Béziers ont récolté des fonds afin d organiser un voyage caritatif. Ils se sont arrêtés à Collique et ont offert aux enfants une journée à Lima, avec pique nique et visite du Zoo. Moment magique pour des enfants qui ne sortent pas du Read More
-- Collique : distribution des tablettes pour les étudiants 19 avril 2021 AVRIL 2021 Nos étudiants, depuis plus d’un an sont privés de cours en présentiel. Ils suivent leurs cours sur un téléphone portable, lequel est souvent le seul de la famille. Ils ont malgré tout été studieux et très courageux. Leurs notes sont impressionnantes. Ils sont notre fierté. Afin de les soutenir et de leur faciliter Read More
+Depuis 3 ans déjà, les élèves du lycée de la Trinité de Béziers récoltent des fonds afin d'organiser un voyage caritatif. Ils se sont arrêtés à Collique et ont offert aux enfants **une journée à Lima**, avec pique-nique et visite du Zoo. Moment magique pour des enfants qui ne sortent généralement pas du bidonville.
 
+<div class="photo-grid">
+  <img src="/perou-amitie-solidarite/assets/images/image-14-225x300.webp" alt="Visite du zoo de Lima avec les enfants de Collique" width="225" height="300" loading="lazy" />
+  <img src="/perou-amitie-solidarite/assets/images/image-15-225x300.webp" alt="Sortie au zoo — moments de bonheur" width="225" height="300" loading="lazy" />
+  <img src="/perou-amitie-solidarite/assets/images/image-16-225x300.webp" alt="Élèves de Béziers et enfants de Collique" width="225" height="300" loading="lazy" />
+  <img src="/perou-amitie-solidarite/assets/images/image-17-300x225.webp" alt="Pique-nique avec les enfants" width="300" height="225" loading="lazy" />
+  <img src="/perou-amitie-solidarite/assets/images/image-18-300x225.webp" alt="Visite guidée du zoo de Lima" width="300" height="225" loading="lazy" />
+  <img src="/perou-amitie-solidarite/assets/images/image-21-300x225.webp" alt="Journée inoubliable pour les enfants" width="300" height="225" loading="lazy" />
+</div>
 
-![Image](/perou-amitie-solidarite/assets/images/481699305_1814691369366272_1337600742088838654_n-150x150.jpg)
+</div>
 
+---
 
-Photos de notre visite du zoo avec 120 enfants de Collique…..
+<div class="news-article">
 
+<span class="news-date-badge">📅 Avril 2021</span>
 
-![Image](/perou-amitie-solidarite/assets/images/image-14-225x300.png)
+## Distribution de Tablettes pour les Étudiants
 
+Nos étudiants, depuis plus d'un an privés de cours en présentiel, suivaient leurs cours sur un seul téléphone portable parfois partagé par toute la famille. Ils ont malgré tout été studieux et très courageux — leurs notes sont impressionnantes.
 
-![Image](/perou-amitie-solidarite/assets/images/image-15-225x300.png)
+Afin de les soutenir et de leur faciliter l'accès aux cours à distance, l'association a distribué des tablettes numériques aux étudiants les plus en difficulté.
 
-
-![Image](/perou-amitie-solidarite/assets/images/image-16-225x300.png)
-
-
-![Image](/perou-amitie-solidarite/assets/images/image-17-300x225.png)
-
-
-![Image](/perou-amitie-solidarite/assets/images/image-18-300x225.png)
-
-
-![Image](/perou-amitie-solidarite/assets/images/image-21-300x225.png)
-
-
-![Image](/perou-amitie-solidarite/assets/images/image-24-300x225.png)
-
-
-![Image](/perou-amitie-solidarite/assets/images/image-25-225x300.png)
-
-
-![Image](/perou-amitie-solidarite/assets/images/image-26-225x300.png)
-
-
-![Image](/perou-amitie-solidarite/assets/images/IMG_20221019_112022-1024x768.jpg)
-
-
-## NOVEMBRE 2022
-
-
-## Visite et suivi des étudiants à Collique
-
-
-![Image](/perou-amitie-solidarite/assets/images/IMG_20221103_173649-1024x768.jpg)
-
-
-![Image](/perou-amitie-solidarite/assets/images/IMG_20221105_170850.jpg)
-
-
-![Image](/perou-amitie-solidarite/assets/images/IMG_20221105_172758.jpg)
-
-
-![Image](/perou-amitie-solidarite/assets/images/IMG_20221105_165039.jpg)
-
-
-![Image](/perou-amitie-solidarite/assets/images/IMG_20221105_151432-1.jpg)
-
-
-![Image](/perou-amitie-solidarite/assets/images/IMG_20221105_135039-1.jpg)
-
-
-![Image](/perou-amitie-solidarite/assets/images/IMG_20221105_161806.jpg)
-
-
-![Image](/perou-amitie-solidarite/assets/images/IMG_20221105_155745.jpg)
-
-
-![Image](/perou-amitie-solidarite/assets/images/IMG_20221105_144210.jpg)
-
-
-![Image](/perou-amitie-solidarite/assets/images/IMG_20221104_172559-1.jpg)
-
-
-![Image](/perou-amitie-solidarite/assets/images/IMG_20221105_191516-1-1024x768.jpg)
-
-
-![Image](/perou-amitie-solidarite/assets/images/image.png)
-
-
-En tant qu’ex enseignante universitaire des filières technologiques en France, j’ai souhaité pouvoir aider sur place mes jeunes compatriotes péruviens dans le cadre associatif au Pérou. C’est ainsi que nous sommes restés à Collique (mon mari et moi) pendant la première semaine de novembre 2022. Comme marraine et membre du bureau de l’Association Pérou Amitié Solidarité, on m’a confié la mission d’améliorer le suivi des jeunes « parrainés » pour les études.  Il s’agit d’étudiants qui ayant fini le secondaire, souhaitent poursuivre leurs études et réussir leur projet professionnel, tout au moins, trouver un métier qui leur permette d’en vivre.
-
-
-Cette mission avait une importance particulière car ayant suivi et parrainé ces jeunes depuis leur enfance, il nous paraissait impensable de les laisser seuls à un moment clé ou leur destin pouvait basculer. En effet, vu leur cadre de vie et le manque de ressources de leurs familles, ces jeunes seraient obligés d’aller chercher un travail sans aucune qualification. Pour les filles cela se traduit la plupart du temps par le travail d’auxiliaire chez les familles des quartiers résidentiels, ou comme commerçantes ambulantes aux quatre coins de la capitale, Lima. Cela implique que lorsqu’elles seront mères de famille, elles confieront leurs enfants à un parent ou ami dans le bidonville. Pour ce qui est des garçons cela suppose trouver un travail mal rémunéré comme commerçant ambulant, gardien dans des maisons, etc. mais il y a aussi un risque qui est celui de gagner de l’argent beaucoup plus facilement de manière illégale, en intégrant des groupes où ils se verront confier des missions de vols ou trafics de drogues. Le taux de délinquance a augmenté à Collique c’est pourquoi il est essentiel qu’ils apprennent un métier pour pouvoir s’en sortir.
-
-
-Une fois sur place, nous avons réuni dans le réfectoire de l’Association tous les jeunes étudiants pour les informer de notre présence, des nouvelles dispositions de l’Asso concernant l’aide financière pour les études et l’aide que nous pouvions leur apporter au niveau de l’orientation et poursuite des études.   Nous avons souhaité les responsabiliser : En tant que membres bénéficiaires de l’association  ils ont des droits mais aussi des devoirs:
-
-
-- ils doivent utiliser la totalité des sommes qui leur sont allouées pour payer leurs études
-- ils doivent présenter chaque mois les justificatifs de paiement des universités ou autres instituts, condition préalable pour l’obtention de l’aide
-- Ils doivent opter prioritairement pour des études de trois ans sauf projet professionnel clairement identifié.
-- Ils doivent s’impliquer dans le fonctionnement de l’association (tutorat d’un jeune étudiant) une fois finies leurs études, sinon l’avenir et la pérennité de celle-ci sera en danger.
-
-
-C’est pour cela que nous avons procédé à la nomination de deux délégués volontaires, interlocuteurs privilégiés entre les étudiants et le bureau de l’Asso afin de mieux communiquer et d’assurer le suivi de chacun d’eux.
-
-
-A la fin de cette réunion, nous avons proposé aux étudiants un coaching individuel pour les aider à mieux se connaître eux-mêmes (qualités, compétences mais aussi points faibles, goûts et prédispositions) et choisir leur orientation.  Nous leur avons aussi expliqué comment se servir d’Internet, pour découvrir les différents métiers et les universités ou instituts auxquels ils peuvent s’adresser ainsi que la durée, la localisation et le programme académique de la formation choisie.
-
-
-Nous avons pu nous entretenir aussi avec les étudiants qui ont déjà fini leurs études et qui travaillent à présent.  Cette réunion nous a permis de mettre un visage sur chaque prénom que nous avions l’habitude d’entendre lorsque nous nous réunissons avec le bureau en France. L’ambiance était au beau fixe et nous avons compris à quel point ces jeunes sont livrés à eux-mêmes car leurs parents sont dans l’impossibilité de les aider, soit par manque de connaissances soit par manque de temps à leur consacrer.  Avant de nous quitter nous avons dégusté quelques gâteaux et boissons. Nous en avons aussi profité pour distribuer quelques dons (principalement vêtements, accessoires  et chaussures) offerts par quelques familles péruviennes.
-
-
-Depuis lors les délégués font preuve d’efficacité dans la gestion du suivi des étudiants. Ils nous ont présenté des tableaux récapitulatifs où sont consignés l’ensemble des données des étudiants répertoriées selon leur orientation et les justificatifs de paiement correspondants.
-
-
-Nous sommes en contact permanent avec les délégués, qui ont déjà réussi à organiser une nouvelle réunion d’information pour les parents et les étudiants.
-
-
-Ana Rosa GOUDRIAS
+</div>
