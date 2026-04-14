@@ -1,0 +1,203 @@
+---
+// Formulaire de contact parrainage — rendu côté client uniquement (pas d'envoi mail pour l'instant)
+interface Props {
+  type?: 'repas' | 'etudes' | 'maitresse' | 'general' | 'don';
+  price?: string;
+}
+const { type = 'general', price } = Astro.props;
+
+const LABELS: Record<string, { title: string; desc: string; icon: string; color: string }> = {
+  repas:     { title: 'Parrainage Repas',     desc: `Je souhaite offrir un repas quotidien à un enfant de Collique — ${price || '26€/mois'}`, icon: '🍽️', color: '#D97706' },
+  etudes:    { title: 'Parrainage Études',    desc: `Je souhaite soutenir la scolarité d'un enfant — ${price || 'dès 35€/mois'}`,            icon: '📚', color: '#059669' },
+  maitresse: { title: 'Parrainage Maîtresse', desc: `Je souhaite soutenir une institutrice — ${price || '25€/mois'}`,                         icon: '👩‍🏫', color: '#7C3AED' },
+  general:   { title: 'Devenir parrain / marraine', desc: 'Je souhaite en savoir plus sur le parrainage',                                    icon: '❤️', color: '#8B1919' },
+  don:       { title: 'Me tenir informé(e)',  desc: 'Je souhaite recevoir des informations sur les actions de l\'association',               icon: '📬', color: '#8B1919' },
+};
+
+const label = LABELS[type] || LABELS.general;
+const formId = `form-${type}-${Math.random().toString(36).slice(2,8)}`;
+---
+
+<div class="parain-form-wrap" id={formId}>
+
+  <div class="parain-form-header" style={`border-color:${label.color}`}>
+    <span class="parain-form-icon">{label.icon}</span>
+    <div>
+      <h3 class="parain-form-title">{label.title}</h3>
+      <p class="parain-form-subtitle">{label.desc}</p>
+    </div>
+  </div>
+
+  <form class="parain-form" data-form-id={formId} onsubmit="return false;">
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for={`${formId}-prenom`}>Prénom *</label>
+        <input type="text" id={`${formId}-prenom`} name="prenom" placeholder="Votre prénom" required autocomplete="given-name" />
+      </div>
+      <div class="form-group">
+        <label for={`${formId}-nom`}>Nom *</label>
+        <input type="text" id={`${formId}-nom`} name="nom" placeholder="Votre nom" required autocomplete="family-name" />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for={`${formId}-email`}>Email *</label>
+        <input type="email" id={`${formId}-email`} name="email" placeholder="votre@email.fr" required autocomplete="email" />
+      </div>
+      <div class="form-group">
+        <label for={`${formId}-tel`}>Téléphone <span style="font-weight:400;color:#A8A29E">(facultatif)</span></label>
+        <input type="tel" id={`${formId}-tel`} name="tel" placeholder="06 XX XX XX XX" autocomplete="tel" />
+      </div>
+    </div>
+
+    {type === 'general' && (
+      <div class="form-group">
+        <label for={`${formId}-type`}>Type de parrainage souhaité</label>
+        <select id={`${formId}-type`} name="type_parrainage">
+          <option value="">-- Choisir un type --</option>
+          <option value="repas">Parrainage Repas — 26€/mois</option>
+          <option value="etudes">Parrainage Études — dès 35€/mois</option>
+          <option value="maitresse">Parrainage Maîtresse — 25€/mois</option>
+          <option value="info">Je souhaite d'abord en savoir plus</option>
+        </select>
+      </div>
+    )}
+
+    <div class="form-group">
+      <label for={`${formId}-message`}>Message <span style="font-weight:400;color:#A8A29E">(facultatif)</span></label>
+      <textarea id={`${formId}-message`} name="message" rows="3" placeholder="Questions, précisions…"></textarea>
+    </div>
+
+    <div class="form-check">
+      <input type="checkbox" id={`${formId}-rgpd`} name="rgpd" required />
+      <label for={`${formId}-rgpd`}>
+        J'accepte que mes coordonnées soient utilisées par Pérou Amitié Solidarité pour me recontacter à propos de ma demande. Ces données ne seront pas transmises à des tiers.
+      </label>
+    </div>
+
+    <button type="submit" class="form-submit" style={`background:${label.color}`} data-form-target={formId}>
+      {label.icon} Envoyer ma demande
+    </button>
+
+  </form>
+
+  <div class="form-success" style="display:none">
+    <div class="form-success-icon">✅</div>
+    <h3>Merci pour votre intérêt !</h3>
+    <p>
+      Nous avons bien reçu votre demande de <strong>{label.title.toLowerCase()}</strong>.
+      Notre équipe vous contactera dans les meilleurs délais.
+    </p>
+    <p style="margin-top:0.75rem;color:#78716C;font-size:0.875rem">
+      En attendant, vous pouvez aussi faire un don ou adhérer directement sur HelloAsso.
+    </p>
+    <a href="https://www.helloasso.com/associations/perou-amitie-solidarite/" target="_blank" rel="noopener" class="btn-red" style="margin-top:1rem;display:inline-flex">
+      Faire un don sur HelloAsso →
+    </a>
+  </div>
+
+</div>
+
+<style>
+.parain-form-wrap {
+  background: white;
+  border-radius: 16px;
+  border: 1px solid #E7E5E4;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  margin: 2.5rem 0;
+}
+.parain-form-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 2rem;
+  background: #FDF8F3;
+  border-bottom: 3px solid;
+}
+.parain-form-icon { font-size: 2rem; flex-shrink: 0; }
+.parain-form-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.2rem; }
+.parain-form-subtitle { font-size: 0.87rem; color: #78716C; }
+.parain-form { padding: 1.75rem 2rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+@media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+.form-group { display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 1rem; }
+.form-group label { font-size: 0.85rem; font-weight: 600; color: #1C1917; }
+.form-group input,
+.form-group select,
+.form-group textarea {
+  border: 1.5px solid #D6D3D1;
+  border-radius: 8px;
+  padding: 0.6rem 0.85rem;
+  font-size: 0.9rem;
+  font-family: inherit;
+  color: #1C1917;
+  background: white;
+  transition: border-color 0.15s;
+  outline: none;
+  width: 100%;
+  resize: vertical;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus { border-color: #8B1919; box-shadow: 0 0 0 3px rgba(139,25,25,0.08); }
+.form-check {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+  margin-bottom: 1.25rem;
+  font-size: 0.78rem;
+  color: #78716C;
+  line-height: 1.5;
+}
+.form-check input { margin-top: 2px; flex-shrink: 0; accent-color: #8B1919; width: 15px; height: 15px; }
+.form-submit {
+  width: 100%;
+  padding: 0.8rem 1.5rem;
+  color: white;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: opacity 0.15s, transform 0.1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.form-submit:hover { opacity: 0.9; transform: translateY(-1px); }
+.form-submit:active { transform: scale(0.98); }
+.form-success { padding: 2.5rem 2rem; text-align: center; }
+.form-success-icon { font-size: 3rem; margin-bottom: 0.75rem; }
+.form-success h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.5rem; color: #1C1917; }
+.form-success p { color: #78716C; font-size: 0.95rem; line-height: 1.65; }
+</style>
+
+<script>
+// Gestion submit form — pas d'envoi réel pour l'instant
+document.querySelectorAll('.parain-form').forEach(form => {
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const f = e.currentTarget as HTMLFormElement;
+    const wrap = f.closest('.parain-form-wrap');
+    if (!wrap) return;
+    // Validation HTML5
+    if (!f.checkValidity()) { f.reportValidity(); return; }
+    // Animer transition
+    f.style.opacity = '0';
+    f.style.transform = 'translateY(-8px)';
+    f.style.transition = 'opacity 0.3s, transform 0.3s';
+    setTimeout(() => {
+      f.style.display = 'none';
+      const header = wrap.querySelector('.parain-form-header') as HTMLElement;
+      if (header) header.style.display = 'none';
+      const success = wrap.querySelector('.form-success') as HTMLElement;
+      if (success) { success.style.display = 'block'; }
+    }, 300);
+  });
+});
+</script>

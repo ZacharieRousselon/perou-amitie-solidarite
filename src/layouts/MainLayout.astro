@@ -188,8 +188,9 @@ const currentPath = Astro.url.pathname;
   </div>
 </footer>
 
+
 <script>
-  // Hamburger toggle
+  // ── Hamburger ────────────────────────────────────
   const btn = document.getElementById('hamburger');
   const mobileNav = document.getElementById('mobile-nav');
   btn?.addEventListener('click', () => {
@@ -197,12 +198,144 @@ const currentPath = Astro.url.pathname;
     btn.setAttribute('aria-expanded', String(isOpen));
     mobileNav?.setAttribute('aria-hidden', String(!isOpen));
   });
-  // Close mobile on link click
   mobileNav?.querySelectorAll('a').forEach(a => {
     a.addEventListener('click', () => {
       mobileNav.classList.remove('open');
       btn?.setAttribute('aria-expanded', 'false');
     });
+  });
+
+  // ── Gallery post-processor ────────────────────────
+  // Group consecutive <p><img></p> elements into grid galleries
+  function processGalleries(container: HTMLElement) {
+    const kids = [...container.children] as HTMLElement[];
+    let group: HTMLElement[] = [];
+
+    function flush() {
+      if (group.length === 0) return;
+      if (group.length === 1) {
+        group[0].classList.add('gal-single-wrap');
+        group = [];
+        return;
+      }
+      const count = group.length;
+      const cls = count === 2 ? 'gal-2' : count === 3 ? 'gal-3' : count === 4 ? 'gal-4' : 'gal-many';
+      const grid = document.createElement('div');
+      grid.className = `gal-grid ${cls}`;
+      const first = group[0];
+      first.parentNode?.insertBefore(grid, first);
+      group.forEach((el, i) => {
+        const slot = document.createElement('div');
+        slot.className = `gal-slot gal-slot-${i}`;
+        slot.appendChild(el);
+        grid.appendChild(slot);
+      });
+      group = [];
+    }
+
+    kids.forEach(el => {
+      const isImgOnly = el.tagName === 'P' && el.children.length === 1 && el.querySelector('img');
+      if (isImgOnly) {
+        group.push(el);
+      } else {
+        flush();
+      }
+    });
+    flush();
+  }
+
+  // ── Lightbox ──────────────────────────────────────
+  let lbImages: string[] = [];
+  let lbIdx = 0;
+
+  function buildLightbox() {
+    if (document.getElementById('lightbox')) return;
+    const lb = document.createElement('div');
+    lb.id = 'lightbox';
+    lb.className = 'lightbox-overlay';
+    lb.setAttribute('role', 'dialog');
+    lb.setAttribute('aria-modal', 'true');
+    lb.innerHTML = `
+      <button class="lightbox-close" id="lightbox-close" aria-label="Fermer">✕</button>
+      <button class="lightbox-nav" id="lightbox-prev" aria-label="Précédent">‹</button>
+      <div class="lightbox-img-wrap"><img id="lightbox-img" src="" alt="" /></div>
+      <button class="lightbox-nav" id="lightbox-next" aria-label="Suivant">›</button>
+      <div class="lightbox-counter" id="lightbox-counter"></div>
+    `;
+    document.body.appendChild(lb);
+
+    const img = document.getElementById('lightbox-img') as HTMLImageElement;
+    const counter = document.getElementById('lightbox-counter')!;
+
+    function show(i: number) {
+      lbIdx = (i + lbImages.length) % lbImages.length;
+      img.src = lbImages[lbIdx];
+      counter.textContent = `${lbIdx + 1} / ${lbImages.length}`;
+    }
+
+    document.getElementById('lightbox-close')?.addEventListener('click', () => lb.classList.remove('open'));
+    document.getElementById('lightbox-prev')?.addEventListener('click', (e) => { e.stopPropagation(); show(lbIdx - 1); });
+    document.getElementById('lightbox-next')?.addEventListener('click', (e) => { e.stopPropagation(); show(lbIdx + 1); });
+    lb.addEventListener('click', (e) => { if (e.target === lb) lb.classList.remove('open'); });
+    document.addEventListener('keydown', e => {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape') lb.classList.remove('open');
+      if (e.key === 'ArrowLeft') show(lbIdx - 1);
+      if (e.key === 'ArrowRight') show(lbIdx + 1);
+    });
+
+    return { show, lb };
+  }
+
+  function initLightbox() {
+    const lb = buildLightbox();
+    if (!lb) return;
+    const allImgs = [...document.querySelectorAll('.article-body img, .mosaic img, .gal-grid img')] as HTMLImageElement[];
+    lbImages = allImgs.map(i => i.src);
+
+    allImgs.forEach((img, idx) => {
+      img.style.cursor = 'zoom-in';
+      img.addEventListener('click', () => {
+        lbImages = allImgs.map(i => i.src);
+        const overlay = document.getElementById('lightbox')!;
+        overlay.classList.add('open');
+        lb.show(idx);
+      });
+    });
+  }
+
+  // ── Carousel init ────────────────────────────────
+  function initCarousels() {
+    document.querySelectorAll('.carousel-wrap').forEach(wrap => {
+      const track = wrap.querySelector('.carousel-track') as HTMLElement;
+      const slides = wrap.querySelectorAll('.carousel-slide');
+      const dots = wrap.querySelectorAll('.carousel-dot');
+      if (!track || slides.length === 0) return;
+      let cur = 0;
+      let timer: ReturnType<typeof setInterval>;
+
+      function go(n: number) {
+        cur = (n + slides.length) % slides.length;
+        track.style.transform = `translateX(-${cur * 100}%)`;
+        dots.forEach((d, i) => d.classList.toggle('active', i === cur));
+      }
+
+      wrap.querySelector('.carousel-btn-prev')?.addEventListener('click', () => { go(cur - 1); resetTimer(); });
+      wrap.querySelector('.carousel-btn-next')?.addEventListener('click', () => { go(cur + 1); resetTimer(); });
+      dots.forEach((d, i) => d.addEventListener('click', () => { go(i); resetTimer(); }));
+
+      function resetTimer() { clearInterval(timer); timer = setInterval(() => go(cur + 1), 5000); }
+      go(0);
+      resetTimer();
+    });
+  }
+
+  // ── Run everything ────────────────────────────────
+  document.addEventListener('DOMContentLoaded', () => {
+    const articleBody = document.querySelector('.article-body') as HTMLElement;
+    if (articleBody) processGalleries(articleBody);
+    initLightbox();
+    initCarousels();
   });
 </script>
 
