@@ -1,19 +1,24 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-scrape.py — Migration statique de perouamitiesolidarite.org
+scrape.py -- Migration statique de perouamitiesolidarite.org
 Extrait le contenu utile (h1/h2/p/ul/li), télécharge les images,
 et génère des fichiers Markdown dans /content.
 """
 
 import os
 import re
+import sys
 import time
 import urllib.parse
 from pathlib import Path
 
 import requests
 from bs4 import BeautifulSoup
+
+# Forcer UTF-8 sur stdout (Windows cp1252 ne supporte pas les emojis)
+if sys.stdout.encoding and sys.stdout.encoding.lower() not in ('utf-8', 'utf-8-sig'):
+    sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 
 # ──────────────────────────────────────────────
 # CONFIGURATION
@@ -22,42 +27,46 @@ from bs4 import BeautifulSoup
 BASE_URL = "https://www.perouamitiesolidarite.org"
 
 PAGES = [
-    {
-        "url": f"{BASE_URL}/",
-        "slug": "index",
-        "title": "Accueil",
-    },
-    {
-        "url": f"{BASE_URL}/qui-sommes-nous/",
-        "slug": "association",
-        "title": "L'Association — Qui sommes-nous ?",
-    },
-    {
-        "url": f"{BASE_URL}/parrainage/",
-        "slug": "parrainage",
-        "title": "Parrainage",
-    },
-    {
-        "url": f"{BASE_URL}/nos-projets/",
-        "slug": "projets",
-        "title": "Actions et Projets",
-    },
-    {
-        "url": f"{BASE_URL}/don/",
-        "slug": "don",
-        "title": "Faire un Don",
-    },
-    {
-        "url": f"{BASE_URL}/actions-et-projets/",
-        "slug": "actions",
-        "title": "Actions et Projets — Détail",
-    },
-    {
-        "url": f"{BASE_URL}/comment-devenir-parrain-ou-marraine/",
-        "slug": "devenir-parrain",
-        "title": "Comment devenir parrain ou marraine ?",
-    },
+    # ── Accueil ────────────────────────────────
+    {"url": f"{BASE_URL}/",                                         "slug": "index",               "title": "Accueil"},
+    # ── Association ────────────────────────────
+    {"url": f"{BASE_URL}/qui-sommes-nous/",                        "slug": "association",          "title": "L'Association - Qui sommes-nous ?"},
+    {"url": f"{BASE_URL}/nos-equipes/",                            "slug": "equipes",              "title": "Nos Equipes"},
+    {"url": f"{BASE_URL}/france/",                                 "slug": "equipe-france",        "title": "Equipe France"},
+    {"url": f"{BASE_URL}/perou/",                                  "slug": "equipe-perou",         "title": "Equipe Perou"},
+    {"url": f"{BASE_URL}/nos-partenaires/",                        "slug": "partenaires",          "title": "Nos Partenaires"},
+    {"url": f"{BASE_URL}/bilan-financier/",                        "slug": "bilan-financier",      "title": "Bilan Financier"},
+    # ── Le Pérou ───────────────────────────────
+    {"url": f"{BASE_URL}/histoire/",                               "slug": "perou-histoire",       "title": "Le Perou - Histoire"},
+    {"url": f"{BASE_URL}/demographie-langues/",                    "slug": "perou-demographie",    "title": "Le Perou - Demographie et Langues"},
+    {"url": f"{BASE_URL}/geographie-climat-et-ressources/",        "slug": "perou-geographie",     "title": "Le Perou - Geographie Climat et Ressources"},
+    {"url": f"{BASE_URL}/patrimoine-culturel/",                    "slug": "perou-patrimoine",     "title": "Le Perou - Patrimoine Culturel"},
+    {"url": f"{BASE_URL}/activites-economiques/",                  "slug": "perou-economie",       "title": "Le Perou - Activites Economiques"},
+    {"url": f"{BASE_URL}/education-sante/",                        "slug": "perou-education",      "title": "Le Perou - Education et Sante"},
+    {"url": f"{BASE_URL}/defis-a-relever/",                        "slug": "perou-actualite",      "title": "Le Perou - Actualite Politique Economique et Sociale"},
+    # ── Parrainage ─────────────────────────────
+    {"url": f"{BASE_URL}/parrainage/",                             "slug": "parrainage",           "title": "Parrainage"},
+    {"url": f"{BASE_URL}/types-de-parrainage/",                    "slug": "types-parrainage",     "title": "Types de Parrainage"},
+    {"url": f"{BASE_URL}/repas/",                                  "slug": "parrainage-repas",     "title": "Parrainage Repas - 26 euros par mois"},
+    {"url": f"{BASE_URL}/etudes/",                                 "slug": "parrainage-etudes",    "title": "Parrainage Etudes - A partir de 35 euros"},
+    {"url": f"{BASE_URL}/parrainages-maitresses/",                 "slug": "parrainage-maitresse", "title": "Parrainage Maitresse - 25 euros"},
+    {"url": f"{BASE_URL}/comment-devenir-parrain-ou-marraine/",   "slug": "devenir-parrain",      "title": "Comment devenir parrain ou marraine ?"},
+    # ── J'agis ─────────────────────────────────
+    {"url": f"{BASE_URL}/benevolat/",                              "slug": "benevolat",            "title": "Benevolat et Stage"},
+    {"url": f"{BASE_URL}/temoignages/",                            "slug": "temoignages",          "title": "Temoignages"},
+    # ── Actualités ─────────────────────────────
+    {"url": f"{BASE_URL}/journaux/",                               "slug": "journaux",             "title": "Journaux"},
+    {"url": f"{BASE_URL}/dernieres-nouvelles/",                    "slug": "dernieres-nouvelles",  "title": "Dernieres Nouvelles"},
+    # ── Don ────────────────────────────────────
+    {"url": f"{BASE_URL}/don/",                                    "slug": "don",                  "title": "Faire un Don"},
+    # ── Actions & Zones ────────────────────────
+    {"url": f"{BASE_URL}/actions-et-projets/",                     "slug": "actions",              "title": "Actions et Projets"},
+    {"url": f"{BASE_URL}/nos-projets/",                            "slug": "projets",              "title": "Nos Projets"},
+    {"url": f"{BASE_URL}/collique/",                               "slug": "zone-collique",        "title": "Zone d'action - Collique"},
+    {"url": f"{BASE_URL}/casitas/",                                "slug": "zone-casitas",         "title": "Zone d'action - Casitas"},
+    {"url": f"{BASE_URL}/amantani/",                               "slug": "zone-amantani",        "title": "Zone d'action - Amantani"},
 ]
+
 
 # Liens critiques à toujours conserver (HelloAsso, formulaires, dons)
 CRITICAL_LINK_PATTERNS = [
@@ -138,10 +147,10 @@ def download_image(img_url: str, images_dir: Path) -> str | None:
 
         local_path = images_dir / filename
         if local_path.exists():
-            print(f"    [CACHE] Image déjà présente : {filename}")
+            print(f"    [CACHE] Image deja presente : {filename}")
             return f"../assets/images/{filename}"
 
-        print(f"    [IMG]   Téléchargement : {img_url}")
+        print(f"    [IMG]   Telechargement : {img_url}")
         resp = requests.get(img_url, headers=HEADERS, timeout=15, stream=True)
         resp.raise_for_status()
 
@@ -153,7 +162,7 @@ def download_image(img_url: str, images_dir: Path) -> str | None:
         return f"../assets/images/{filename}"
 
     except Exception as e:
-        print(f"    [WARN]  Impossible de télécharger {img_url} : {e}")
+        print(f"    [WARN]  Impossible de telecharger {img_url} : {e}")
         return None
 
 
@@ -254,7 +263,7 @@ def extract_content_blocks(soup: BeautifulSoup, images_dir: Path) -> list[str]:
                 link_md = f"[{text}]({href})"
                 if link_md not in seen_texts:
                     seen_texts.add(link_md)
-                    blocks.append(f"\n> 🔗 **Lien important** : {link_md}\n")
+                    blocks.append(f"\n> **[LIEN]** : {link_md}\n")
 
     return blocks
 
@@ -267,19 +276,19 @@ def scrape_page(page: dict, images_dir: Path) -> str:
     title = page["title"]
     slug = page["slug"]
 
-    print(f"\n{'='*60}")
+    print(f"\n" + "="*60)
     print(f"[{slug.upper()}] Scraping : {url}")
-    print(f"{'='*60}")
+    print("="*60)
 
     try:
         resp = requests.get(url, headers=HEADERS, timeout=20)
         resp.raise_for_status()
     except requests.exceptions.HTTPError as e:
         print(f"  [ERREUR] HTTP {e.response.status_code} pour {url}")
-        return f"# {title}\n\n> ⚠️ Page non disponible lors du scraping ({e})\n"
+        return f"# {title}\n\n> Page non disponible lors du scraping ({e})\n"
     except Exception as e:
         print(f"  [ERREUR] {e}")
-        return f"# {title}\n\n> ⚠️ Erreur lors du scraping : {e}\n"
+        return f"# {title}\n\n> Erreur lors du scraping : {e}\n"
 
     soup = BeautifulSoup(resp.content, "html.parser")
 
@@ -315,9 +324,9 @@ def scrape_page(page: dict, images_dir: Path) -> str:
 # ──────────────────────────────────────────────
 
 def main():
-    print("🚀 Démarrage du scraping — Pérou Amitié Solidarité")
-    print(f"   Contenu → {CONTENT_DIR}")
-    print(f"   Images  → {IMAGES_DIR}")
+    print("[START] Demarrage du scraping -- Perou Amitie Solidarite")
+    print(f"   Contenu -> {CONTENT_DIR}")
+    print(f"   Images  -> {IMAGES_DIR}")
 
     # Créer les répertoires
     CONTENT_DIR.mkdir(parents=True, exist_ok=True)
@@ -331,7 +340,7 @@ def main():
         # Sauvegarder le fichier Markdown
         output_file = CONTENT_DIR / f"{page['slug']}.md"
         output_file.write_text(md_content, encoding="utf-8")
-        print(f"  ✅ Enregistré : {output_file.name}")
+        print(f"  [OK] Enregistre : {output_file.name}")
 
         results.append({
             "slug": page["slug"],
@@ -341,19 +350,19 @@ def main():
 
         # Rate-limiting : attendre entre chaque page (sauf la dernière)
         if i < len(PAGES) - 1:
-            print(f"  ⏳ Pause {DELAY}s…")
+            print(f"  [WAIT] Pause {DELAY}s...")
             time.sleep(DELAY)
 
     # Rapport final
     print(f"\n{'='*60}")
-    print("✅ SCRAPING TERMINÉ")
+    print("[DONE] SCRAPING TERMINE")
     print(f"{'='*60}")
     for r in results:
-        print(f"  • {r['slug']}.md — {r['chars']} caractères")
+        print(f"  - {r['slug']}.md -- {r['chars']} caracteres")
 
     image_count = len(list(IMAGES_DIR.glob("*")))
-    print(f"  • {image_count} image(s) téléchargée(s) dans assets/images/")
-    print(f"\n📁 Prêt pour le commit Git !")
+    print(f"  - {image_count} image(s) telechargee(s) dans assets/images/")
+    print(f"\n[GIT] Pret pour le commit Git !")
 
 
 if __name__ == "__main__":

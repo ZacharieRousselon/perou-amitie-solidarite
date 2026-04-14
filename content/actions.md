@@ -1,10 +1,10 @@
 ---
-title: "Actions et Projets — Détail"
+title: "Actions et Projets"
 source: "https://www.perouamitiesolidarite.org/actions-et-projets/"
-scraped_at: "2026-04-14T13:13:08"
+scraped_at: "2026-04-14T13:34:08"
 ---
 
-# Actions et Projets — Détail
+# Actions et Projets
 
 > Source originale : [https://www.perouamitiesolidarite.org/actions-et-projets/](https://www.perouamitiesolidarite.org/actions-et-projets/)
 
