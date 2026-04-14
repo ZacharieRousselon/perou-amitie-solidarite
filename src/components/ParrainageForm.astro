@@ -15,7 +15,7 @@ const LABELS: Record<string, { title: string; desc: string; icon: string; color:
 };
 
 const label = LABELS[type] || LABELS.general;
-const formId = `form-${type}-${Math.random().toString(36).slice(2,8)}`;
+const formId = `form-${type}`;
 ---
 
 <div class="parain-form-wrap" id={formId}>
@@ -93,7 +93,7 @@ const formId = `form-${type}-${Math.random().toString(36).slice(2,8)}`;
     <p style="margin-top:0.75rem;color:#78716C;font-size:0.875rem">
       En attendant, vous pouvez aussi faire un don ou adhérer directement sur HelloAsso.
     </p>
-    <a href="https://www.helloasso.com/associations/perou-amitie-solidarite/" target="_blank" rel="noopener" class="btn-red" style="margin-top:1rem;display:inline-flex">
+    <a href="https://www.helloasso.com/associations/perou-amitie-solidarite/" target="_blank" rel="noopener noreferrer" class="btn-red" style="margin-top:1rem;display:inline-flex">
       Faire un don sur HelloAsso →
     </a>
   </div>

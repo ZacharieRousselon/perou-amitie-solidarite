@@ -209,12 +209,25 @@ const carouselSlides = CAROUSEL_MAP[entry.id] ?? [];
 const formType = FORM_TYPE[entry.id];
 const formPrice = FORM_PRICE[entry.id];
 const isDon = entry.id === 'don';
+
+// SEO: description auto depuis le début du contenu
+const autoDesc = rawBody
+  .replace(/^---[\s\S]*?---/, '')         // retire frontmatter si présent dans body
+  .replace(/#{1,6}\s+/g, '')              // retire les titres Markdown
+  .replace(/[>!\[\]*`_]/g, '')            // retire les caractères Markdown
+  .replace(/\n+/g, ' ')
+  .trim()
+  .slice(0, 155);
+const pageDescription = entry.data.description || autoDesc || `Découvrez notre page sur ${title} — Association Pérou Amitié Solidarité.`;
+
+// SEO: og:image par défaut = logo associatif
+const ogImage = heroImgUrl ?? `${BASE}/assets/images/Logo-perou-asso-1024x304.png`;
 ---
 
 <MainLayout
   title={title}
-  description={entry.data.description}
-  heroImage={heroImgUrl}
+  description={pageDescription}
+  heroImage={ogImage}
   heroTitle={title}
   showPageHero={true}
   breadcrumb={[{ label: title }]}

@@ -712,3 +712,62 @@ body {
 .don-option-icon { font-size: 2.25rem; margin-bottom: 0.5rem; }
 .don-option h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; }
 .don-option p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
+
+/* === Phase 1 Fixes === */
+
+/* Skip navigation link */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 1rem;
+  background: var(--red-deep);
+  color: white;
+  padding: 0.5rem 1.25rem;
+  border-radius: 6px;
+  z-index: 10001;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: left 0s;
+}
+.skip-link:focus {
+  left: 1rem;
+  outline: 3px solid white;
+  outline-offset: 2px;
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .carousel-track { transition: none !important; }
+  .carousel-slide img { transition: none !important; }
+  .mosaic img { transition: none !important; }
+  .gal-grid img { transition: none !important; }
+  .card { transition: none !important; }
+  .zone-card img { transition: none !important; }
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+
+/* Focus visible amélioré */
+:focus-visible {
+  outline: 3px solid var(--red-main);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+.form-group input:focus-visible,
+.form-group select:focus-visible,
+.form-group textarea:focus-visible {
+  outline: none;
+  border-color: var(--red-main);
+  box-shadow: 0 0 0 3px rgba(139,25,25,0.25);
+}
+
+/* High-contrast focus for buttons */
+.btn-primary:focus-visible,
+.btn-secondary:focus-visible,
+.btn-red:focus-visible,
+.carousel-btn:focus-visible,
+.lightbox-close:focus-visible,
+.lightbox-nav:focus-visible {
+  outline: 3px solid white;
+  outline-offset: 2px;
+}

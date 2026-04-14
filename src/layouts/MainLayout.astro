@@ -45,6 +45,7 @@ const currentPath = Astro.url.pathname;
 </head>
 
 <body>
+<a href="#main-content" class="skip-link">Passer au contenu principal</a>
 
 <!-- ══ HEADER ══════════════════════════════════════════════════════ -->
 <header class="site-header">
@@ -88,7 +89,7 @@ const currentPath = Astro.url.pathname;
     </ul>
 
     <!-- Hamburger mobile -->
-    <button class="nav-hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+    <button class="nav-hamburger" id="hamburger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-nav">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -138,7 +139,7 @@ const currentPath = Astro.url.pathname;
 )}
 
 <!-- ══ MAIN CONTENT ════════════════════════════════════════════════ -->
-<main>
+<main id="main-content">
   <slot />
 </main>
 
@@ -181,8 +182,8 @@ const currentPath = Astro.url.pathname;
     <div class="footer-bottom">
       <p>© {new Date().getFullYear()} Pérou Amitié Solidarité — Association loi 1901 — Tous droits réservés</p>
       <div style="display:flex;gap:1rem;align-items:center">
-        <a href="https://www.facebook.com/perouamitiesolidariteofficiel" target="_blank" rel="noopener" style="color:#A8A29E;font-size:0.82rem">Facebook</a>
-        <span class="footer-badge">🇵🇪 Depuis 2003</span>
+        <a href="https://www.facebook.com/perouamitiesolidariteofficiel" target="_blank" rel="noopener noreferrer" style="color:#A8A29E;font-size:0.82rem"><span aria-hidden="true">📘</span> Facebook</a>
+        <span class="footer-badge"><span aria-hidden="true">🇵🇪</span> Depuis 2003</span>
       </div>
     </div>
   </div>
@@ -324,7 +325,20 @@ const currentPath = Astro.url.pathname;
       wrap.querySelector('.carousel-btn-next')?.addEventListener('click', () => { go(cur + 1); resetTimer(); });
       dots.forEach((d, i) => d.addEventListener('click', () => { go(i); resetTimer(); }));
 
-      function resetTimer() { clearInterval(timer); timer = setInterval(() => go(cur + 1), 5000); }
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      function resetTimer() {
+        clearInterval(timer);
+        if (!prefersReduced) timer = setInterval(() => go(cur + 1), 5000);
+      }
+      // Marquer slides non-actives aria-hidden
+      slides.forEach((s, i) => s.setAttribute('aria-hidden', i === 0 ? 'false' : 'true'));
+      const origGo = go;
+      // Override go to also update aria-hidden
+      (wrap as any)._go = (n: number) => {
+        slides[cur]?.setAttribute('aria-hidden', 'true');
+        origGo(n);
+        slides[cur]?.setAttribute('aria-hidden', 'false');
+      };
       go(0);
       resetTimer();
     });
