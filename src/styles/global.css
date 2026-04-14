@@ -1,6 +1,5 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 @plugin "@tailwindcss/typography";
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@600;700&display=swap');
 
 /* ─── Design Tokens ─────────────────────────────── */
 :root {
@@ -770,4 +769,12 @@ body {
 .lightbox-nav:focus-visible {
   outline: 3px solid white;
   outline-offset: 2px;
+}
+
+/* Dropdown accessible via clavier (force-open toggle) */
+.nav-item.force-open .nav-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
 }
