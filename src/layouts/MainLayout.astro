@@ -39,7 +39,7 @@ const currentPath = Astro.url.pathname;
   <meta property="og:url" content={canonicalURL} />
   {heroImage && <meta property="og:image" content={heroImage} />}
   <title>{title} | Pérou Amitié Solidarité</title>
-  <link rel="icon" type="image/png" href="/perou-amitie-solidarite/assets/images/favicon-logo.png" />
+  <link rel="icon" type="image/png" href={`${BASE}/assets/images/favicon-logo.png`} />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <!-- Google Fonts chargées de manière non-bloquante -->
@@ -58,7 +58,7 @@ const currentPath = Astro.url.pathname;
     <!-- Logo -->
     <a href="/perou-amitie-solidarite/" class="nav-logo">
       <img
-        src="/perou-amitie-solidarite/assets/images/logo-perou-asso.webp"
+        src={`${BASE}/assets/images/logo-perou-asso.webp`}
         alt="Logo Pérou Amitié Solidarité"
         width="90"
         height="49"
