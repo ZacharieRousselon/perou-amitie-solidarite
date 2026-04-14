@@ -72,9 +72,11 @@ const formId = `form-${type}`;
     </div>
 
     <div class="form-check">
-      <input type="checkbox" id={`${formId}-rgpd`} name="rgpd" required />
+      <input type="checkbox" id={`${formId}-rgpd`} name="rgpd" required autocomplete="off" />
       <label for={`${formId}-rgpd`}>
-        J'accepte que mes coordonnées soient utilisées par Pérou Amitié Solidarité pour me recontacter à propos de ma demande. Ces données ne seront pas transmises à des tiers.
+        J'accepte que mes coordonnées soient utilisées par Pérou Amitié Solidarité pour traiter ma demande de parrainage.
+        Voir notre <a href="/perou-amitie-solidarite/politique-confidentialite" target="_blank" rel="noopener noreferrer" style="color:#8B1919;text-decoration:underline">politique de confidentialité</a>.
+        <span style="color:#8B1919;font-weight:700" aria-hidden="true"> *</span>
       </label>
     </div>
 

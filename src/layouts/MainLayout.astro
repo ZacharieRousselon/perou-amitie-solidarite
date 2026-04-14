@@ -153,39 +153,44 @@ const currentPath = Astro.url.pathname;
     <div class="footer-grid">
 
       <div class="footer-brand">
-        <h2>🇵🇪 Pérou Amitié Solidarité</h2>
+        <h2><span aria-hidden="true">🇵🇪</span> Pérou Amitié Solidarité</h2>
         <p>Association loi 1901 fondée en 2003. Nous aidons les enfants défavorisés du bidonville de Collique (Lima) et de l'île d'Amantani grâce à vos parrainages.</p>
-        <p style="font-size:0.78rem;color:#78716C">Siège social : Baurech, Gironde (33)</p>
+        <p style="font-size:0.78rem;color:#A8A29E;margin-top:0.5rem;line-height:1.6">
+          Siège social : 238 route de Sentout, 33880 Baurech (Gironde)<br />
+          RNA : W072002360 · SIRET : 492 075 163 00013
+        </p>
       </div>
 
       <div class="footer-col">
         <h3>L'Association</h3>
-        <a href="/perou-amitie-solidarite/association">Qui sommes-nous ?</a>
-        <a href="/perou-amitie-solidarite/equipes">Nos équipes</a>
-        <a href="/perou-amitie-solidarite/partenaires">Nos partenaires</a>
-        <a href="/perou-amitie-solidarite/bilan-financier">Bilan financier</a>
+        <a href={`${BASE}/association`}>Qui sommes-nous ?</a>
+        <a href={`${BASE}/equipes`}>Nos équipes</a>
+        <a href={`${BASE}/partenaires`}>Nos partenaires</a>
+        <a href={`${BASE}/bilan-financier`}>Bilan financier</a>
       </div>
 
       <div class="footer-col">
         <h3>Agir</h3>
-        <a href="/perou-amitie-solidarite/parrainage">Parrainage</a>
-        <a href="/perou-amitie-solidarite/don">Faire un don</a>
-        <a href="/perou-amitie-solidarite/benevolat">Bénévolat</a>
-        <a href="/perou-amitie-solidarite/devenir-parrain">Devenir parrain</a>
+        <a href={`${BASE}/parrainage`}>Parrainage</a>
+        <a href={`${BASE}/don`}>Faire un don</a>
+        <a href={`${BASE}/benevolat`}>Bénévolat</a>
+        <a href={`${BASE}/devenir-parrain`}>Devenir parrain</a>
       </div>
 
       <div class="footer-col">
         <h3>Zones d'action</h3>
-        <a href="/perou-amitie-solidarite/zone-collique">Collique (Lima)</a>
-        <a href="/perou-amitie-solidarite/zone-casitas">Casitas</a>
-        <a href="/perou-amitie-solidarite/zone-amantani">Amantani</a>
-        <a href="/perou-amitie-solidarite/projets">Nos projets</a>
+        <a href={`${BASE}/zone-collique`}>Collique (Lima)</a>
+        <a href={`${BASE}/zone-casitas`}>Casitas</a>
+        <a href={`${BASE}/zone-amantani`}>Amantani</a>
+        <a href={`${BASE}/projets`}>Nos projets</a>
       </div>
     </div>
 
     <div class="footer-bottom">
       <p>© {new Date().getFullYear()} Pérou Amitié Solidarité — Association loi 1901 — Tous droits réservés</p>
-      <div style="display:flex;gap:1rem;align-items:center">
+      <div style="display:flex;gap:1.25rem;align-items:center;flex-wrap:wrap">
+        <a href={`${BASE}/mentions-legales`} style="color:#A8A29E;font-size:0.8rem">Mentions légales</a>
+        <a href={`${BASE}/politique-confidentialite`} style="color:#A8A29E;font-size:0.8rem">Politique de confidentialité</a>
         <a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer" style="color:#A8A29E;font-size:0.82rem"><span aria-hidden="true">📘</span> Facebook</a>
         <span class="footer-badge"><span aria-hidden="true">🇵🇪</span> Depuis 2003</span>
       </div>
