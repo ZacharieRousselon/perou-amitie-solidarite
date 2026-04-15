@@ -1,4 +1,4 @@
-﻿# ══════════════════════════════════════════════════════════════════
+# ══════════════════════════════════════════════════════════════════
 # Pérou Amitié Solidarité — Site associatif — Apache · Infomaniak
 # Audit sécurité 2025 : premier déploiement headers de sécurité
 # ══════════════════════════════════════════════════════════════════
@@ -11,21 +11,7 @@
 
 <IfModule mod_headers.c>
   # CSP élargie : YouTube embeds autorisés (iframes vidéos asso)
-  Header always set Content-Security-Policy "\
-    default-src 'none'; \
-    script-src 'self'; \
-    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; \
-    font-src 'self' https://fonts.gstatic.com; \
-    img-src 'self' data: https://img.youtube.com; \
-    media-src 'self'; \
-    connect-src 'self'; \
-    object-src 'none'; \
-    form-action 'self' https://www.helloasso.com; \
-    frame-src https://www.youtube.com https://www.youtube-nocookie.com https://www.helloasso.com; \
-    frame-ancestors 'none'; \
-    base-uri 'self'; \
-    upgrade-insecure-requests; \
-  "
+  Header always set Content-Security-Policy "default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://img.youtube.com; media-src 'self'; connect-src 'self'; object-src 'none'; form-action 'self' https://www.helloasso.com; frame-src https://www.youtube.com https://www.youtube-nocookie.com https://www.helloasso.com; frame-ancestors 'none'; base-uri 'self'; upgrade-insecure-requests"
   Header always set X-Content-Type-Options "nosniff"
   Header always set X-Frame-Options "DENY"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
@@ -34,7 +20,6 @@
   Header always set Cross-Origin-Opener-Policy "same-origin"
   Header always set Cross-Origin-Resource-Policy "same-origin"
   Header unset X-Powered-By
-  Header unset Server
 </IfModule>
 
 <IfModule mod_deflate.c>
