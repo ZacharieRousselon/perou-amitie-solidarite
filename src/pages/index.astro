@@ -11,7 +11,8 @@ import { BASE, HELLOASSO_URL } from '../config';
 
 <!-- ══ HERO ══════════════════════════════════════════════════════ -->
 <section class="hero">
-  <div class="hero-bg" style={`background-image:url('${BASE}/assets/images/reg-cus-ville001-1280x800.jpeg')`}></div>
+  <div class="hero-bg hero-ken-burns" style={`background-image:url('${BASE}/assets/images/reg-cus-ville001-1280x800.jpeg')`}></div>
+  <div class="hero-overlay"></div>
   <div class="hero-content">
     <span class="hero-tag">Association humanitaire · Depuis 2003</span>
     <h1>Ensemble pour les enfants du Pérou</h1>
@@ -23,16 +24,33 @@ import { BASE, HELLOASSO_URL } from '../config';
       <a href={`${BASE}/parrainage`} class="btn-primary">Devenir parrain</a>
       <a href={`${BASE}/don`} class="btn-secondary">Faire un don</a>
     </div>
+    <div class="hero-trust">
+      <span>🔒 100% des dons sur le terrain</span>
+      <span>📋 Déclaration fiscale fournie</span>
+      <span>🇫🇷 Asso loi 1901 — Gironde</span>
+    </div>
   </div>
 </section>
 
 <!-- ══ STATS ═════════════════════════════════════════════════════ -->
 <div class="stats-bar">
   <div class="stats-inner">
-    <div><div class="stat-value">2003</div><div class="stat-label">Année de Création</div></div>
-    <div><div class="stat-value">130+</div><div class="stat-label">Enfants Parrainés</div></div>
-    <div><div class="stat-value">2</div><div class="stat-label">Zones d'Action</div></div>
-    <div><div class="stat-value">20+</div><div class="stat-label">Ans d'Engagement</div></div>
+    <div class="stat-item">
+      <div class="stat-value" data-count="2003" data-suffix="">2003</div>
+      <div class="stat-label">Année de Création</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value" data-count="130" data-suffix="+">130+</div>
+      <div class="stat-label">Enfants Parrainés</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value" data-count="2" data-suffix="">2</div>
+      <div class="stat-label">Zones d'Action</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value" data-count="20" data-suffix="+">20+</div>
+      <div class="stat-label">Ans d'Engagement</div>
+    </div>
   </div>
 </div>
 
@@ -79,25 +97,34 @@ import { BASE, HELLOASSO_URL } from '../config';
       <h2 class="section-title">Où nous agissons</h2>
     </div>
     <div class="grid-3">
-      <a href={`${BASE}/zone-collique`} class="zone-card">
-        <Img src={`${BASE}/assets/images/Map_of_Lima_highlighting_Comas-2.png`} alt="Quartier de Collique à Lima" width={400} height={300} loading="lazy" style="object-fit:contain;background:#f5f5f4" />
+      <!-- Collique : carte géo avec teinture rouge marque -->
+      <a href={`${BASE}/zone-collique`} class="zone-card zone-card-map zone-card-collique reveal">
+        <div class="zone-map-bg" style={`background-image:url('${BASE}/assets/images/Map_of_Lima_highlighting_Comas-2.png')`} aria-hidden="true"></div>
         <div class="zone-card-overlay">
+          <div class="zone-card-icon" aria-hidden="true">📍</div>
           <h3>Collique · Lima</h3>
           <p>Bidonville au nord de Lima — repas, casitas, santé</p>
+          <span class="zone-card-cta">Découvrir →</span>
         </div>
       </a>
-      <a href={`${BASE}/zone-casitas`} class="zone-card">
+      <!-- Casitas : vraie photo terrain -->
+      <a href={`${BASE}/zone-casitas`} class="zone-card reveal" style="--delay:0.1s">
         <Img src={`${BASE}/assets/images/20429586_1447639341992507_3194714572492583571_n.jpg`} alt="Les Casitas — soutien scolaire" width={400} height={300} loading="lazy" />
         <div class="zone-card-overlay">
+          <div class="zone-card-icon" aria-hidden="true">🏫</div>
           <h3>Les Casitas</h3>
           <p>Classes maternelles et soutien scolaire à Collique</p>
+          <span class="zone-card-cta">Découvrir →</span>
         </div>
       </a>
-      <a href={`${BASE}/zone-amantani`} class="zone-card">
-        <Img src={`${BASE}/assets/images/400px-Localizacion_de_Amantani-2.jpg`} alt="Île d'Amantani sur le lac Titicaca" width={400} height={300} loading="lazy" style="object-fit:contain;background:#e0f2fe" />
+      <!-- Amantani : carte géo avec teinture bleue Titicaca -->
+      <a href={`${BASE}/zone-amantani`} class="zone-card zone-card-map zone-card-amantani reveal" style="--delay:0.2s">
+        <div class="zone-map-bg" style={`background-image:url('${BASE}/assets/images/400px-Localizacion_de_Amantani-2.jpg')`} aria-hidden="true"></div>
         <div class="zone-card-overlay">
+          <div class="zone-card-icon" aria-hidden="true">🏝️</div>
           <h3>Amantani · Titicaca</h3>
           <p>Île du lac Titicaca — collège Miguel Grau</p>
+          <span class="zone-card-cta">Découvrir →</span>
         </div>
       </a>
     </div>
@@ -237,19 +264,73 @@ import { BASE, HELLOASSO_URL } from '../config';
   </div>
 </section>
 
-<!-- ══ CTA DON + HELLOASSO ═════════════════════════════════════ -->
-<section class="section bg-white">
+<!-- ══ TÉMOIGNAGE PARRAIN ══════════════════════════════════════ -->
+<section class="section bg-cream reveal">
   <div class="section-inner">
-    <div class="cta-banner">
-      <h2>Votre générosité change des vies</h2>
-      <p>
-        Vos dons financent les repas quotidiens, la scolarité, les fournitures scolaires
-        et les projets d'infrastructure. 100% de votre don est utilisé sur le terrain.
-      </p>
-      <div style="display:flex;gap:0.75rem;flex-wrap:wrap;justify-content:center">
-        <a href={HELLOASSO_URL} target="_blank" rel="noopener noreferrer" class="btn-primary"><span aria-hidden="true">💚</span> Donner sur HelloAsso</a>
-        <a href={`${BASE}/parrainage`} class="btn-secondary">Devenir parrain</a>
+    <div style="text-align:center;margin-bottom:3rem">
+      <span class="section-tag">Ils s'engagent</span>
+      <h2 class="section-title">La voix de nos parrains</h2>
+    </div>
+    <div class="temoignage-grid">
+      <div class="temoignage-card">
+        <div class="temoignage-quote" aria-hidden="true">&ldquo;</div>
+        <p class="temoignage-text">
+          Parrainer un enfant, c'est une relation humaine qui dure dans le temps.
+          Recevoir des nouvelles de la famille, savoir que notre aide change concrètement leur quotidien — ça n'a pas de prix.
+        </p>
+        <div class="temoignage-author">
+          <div class="temoignage-avatar" aria-hidden="true">ML</div>
+          <div>
+            <strong>Marie-Louise</strong>
+            <span>Marraine depuis 2015 — Bordeaux</span>
+          </div>
+        </div>
       </div>
+      <div class="temoignage-card">
+        <div class="temoignage-quote" aria-hidden="true">&ldquo;</div>
+        <p class="temoignage-text">
+          J'ai commencé par un parrainage repas à 26€/mois. Aujourd'hui je parraine
+          aussi la scolarité. C'est le placement le plus rentable de ma vie — en humanité.
+        </p>
+        <div class="temoignage-author">
+          <div class="temoignage-avatar" aria-hidden="true">PD</div>
+          <div>
+            <strong>Pierre-Daniel</strong>
+            <span>Parrain depuis 2018 — Arcachon</span>
+          </div>
+        </div>
+      </div>
+      <div class="temoignage-card">
+        <div class="temoignage-quote" aria-hidden="true">&ldquo;</div>
+        <p class="temoignage-text">
+          Partir en mission au Pérou avec l'asso a transformé ma vision du monde.
+          Je soutiens maintenant depuis la France, mais ces enfants font partie de ma famille.
+        </p>
+        <div class="temoignage-author">
+          <div class="temoignage-avatar" aria-hidden="true">SB</div>
+          <div>
+            <strong>Sophie B.</strong>
+            <span>Bénévole & marraine — Biganos</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA DON + HELLOASSO ═════════════════════════════════════ -->
+<section class="cta-banner-section reveal">
+  <div class="cta-banner-img" style={`background-image:url('${BASE}/assets/images/imgp2516.jpg')`} aria-hidden="true"></div>
+  <div class="cta-banner-overlay"></div>
+  <div class="cta-banner-content">
+    <h2>Votre générosité change des vies</h2>
+    <p>
+      Vos dons financent les repas quotidiens, la scolarité, les fournitures scolaires
+      et les projets d'infrastructure. <strong>100% de votre don est utilisé sur le terrain.</strong>
+    </p>
+    <div class="cta-banner-actions">
+      <a href={HELLOASSO_URL} target="_blank" rel="noopener noreferrer" class="btn-primary btn-lg"><span aria-hidden="true">💚</span> Donner sur HelloAsso</a>
+      <a href={`${BASE}/parrainage`} class="btn-outline-white btn-lg">Devenir parrain</a>
     </div>
   </div>
 </section>
@@ -305,3 +386,52 @@ import { BASE, HELLOASSO_URL } from '../config';
   }
 }
 </style>
+
+<script>
+// ── Ken Burns : déclenché par l'animation CSS (rien à faire en JS)
+
+// ── Count-up animé sur les stats ─────────────────────────────────
+function animateCountUp(el) {
+  const target = parseInt(el.dataset.count, 10);
+  const suffix = el.dataset.suffix || '';
+  const duration = 1800;
+  const start = performance.now();
+  // Pour 2003 (année), on part de 1990
+  const from = target > 1000 ? target - 13 : 0;
+  function tick(now) {
+    const elapsed = Math.min(now - start, duration);
+    const progress = elapsed / duration;
+    // easeOutExpo
+    const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+    const current = Math.round(from + (target - from) * ease);
+    el.textContent = current.toLocaleString('fr-FR') + suffix;
+    if (progress < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+const statObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !entry.target.dataset.animated) {
+      entry.target.dataset.animated = 'true';
+      animateCountUp(entry.target);
+    }
+  });
+}, { threshold: 0.6 });
+
+document.querySelectorAll('.stat-value[data-count]').forEach(el => statObserver.observe(el));
+
+// ── Scroll-reveal fade-up ─────────────────────────────────────────
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const delay = entry.target.style.getPropertyValue('--delay') || '0s';
+      entry.target.style.transitionDelay = delay;
+      entry.target.classList.add('revealed');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+</script>
