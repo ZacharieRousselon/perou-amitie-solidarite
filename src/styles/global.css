@@ -328,22 +328,24 @@ body {
 }
 .btn-secondary:hover { background: oklch(100% 0 0 / 0.24); }
 
+/* btn-red = secondaire sur fond clair — outline ghost pour différencier de btn-primary (amber fillé) */
 .btn-red {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  background: var(--red-main);
-  color: var(--surface-1);
+  background: transparent;
+  color: var(--red-main);
+  border: 2px solid var(--red-main);
   font-weight: 700;
   font-size: 0.9rem;
   font-family: var(--font-ui);
   letter-spacing: 0.01em;
-  padding: 0.75rem 1.75rem;
+  padding: 0.7rem 1.7rem;
   border-radius: 10px;
   text-decoration: none;
-  transition: background 0.15s;
+  transition: background 0.15s, color 0.15s, transform 0.1s;
 }
-.btn-red:hover { background: var(--red-light); }
+.btn-red:hover { background: var(--red-main); color: var(--surface-1); transform: translateY(-1px); }
 
 /* ─── Stats bar ─────────────────────────────────── */
 .stats-bar {
@@ -715,11 +717,20 @@ body {
 @media (max-width: 600px) {
   .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
 }
+/* Section padding réduit sur petits écrans */
+@media (max-width: 480px) {
+  .section { padding: 3.5rem 1rem; }
+  .section-sm { padding: 2rem 1rem; }
+  /* price-badge sort du flux sur mobile 1-colonne — on le cache plutôt que de laisser déborder */
+  .price-badge { display: none; }
+}
 
 .divider { height: 1px; background: #E7E5E4; margin: 3rem 0; }
 
 /* ─── Prose override (Markdown content) ─────────── */
-.content-prose h1 { display: none; } /* On utilise le page-hero */
+/* Masquer le h1 Markdown UNIQUEMENT quand un page-hero est présent comme frère aîné du main.
+   Si la page est rendue sans showPageHero, le h1 reste visible et lisible. */
+.page-hero ~ main .content-prose h1 { display: none; }
 .content-prose blockquote:first-of-type { display: none; } /* On cache la ref source */
 .content-prose hr:first-of-type { display: none; }
 /* === Carousel === */
@@ -727,7 +738,8 @@ body {
 .carousel-track { display: flex; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); will-change: transform; }
 .carousel-slide { flex: 0 0 100%; position: relative; aspect-ratio: 4/3; overflow: hidden; }
 @media (max-width: 600px) { .carousel-slide { aspect-ratio: 4/3; } }
-.carousel-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* object-position: top center — les visages sont généralement en haut des photos de terrain */
+.carousel-slide img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
 .carousel-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 1rem 1.5rem; background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.2) 60%, transparent 100%); color: white; font-size: 0.875rem; font-weight: 500; pointer-events: none; text-shadow: 0 1px 3px rgba(0,0,0,0.6); }
 .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.18); border: none; color: white; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(4px); transition: background 0.15s; z-index: 5; font-size: 1.2rem; line-height: 1; }
 .carousel-btn:hover { background: rgba(255,255,255,0.32); }
